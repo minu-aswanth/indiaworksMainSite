@@ -14,6 +14,12 @@ var UserSchema = new Schema({
   },
   phone: String,
   address: String,
+  category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
+  subCategory: [{ type: Schema.Types.ObjectId, ref: 'SubCategory' }],
+  skill: [String],
+  rating: int,
+  pictureId: [String],
+  documentId: [String]
   hashedPassword: String,
   provider: String,
   salt: String,

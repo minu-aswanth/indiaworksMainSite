@@ -14,7 +14,7 @@ var TicketSchema = new Schema({
   /*not needed*/location: String,
   ticketLocation: String,
   workerAssigned: { type: Schema.Types.ObjectId, ref: 'Worker' },
-  rating: int
+  rating: { type: int, default: -1 }
 });
 
 module.exports = mongoose.model('Ticket', TicketSchema);
