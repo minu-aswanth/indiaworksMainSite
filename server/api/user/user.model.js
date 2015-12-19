@@ -8,6 +8,7 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 var UserSchema = new Schema({
   name: String,
   email: { type: String, lowercase: true },
+  emailVerified: { type: Boolean, default: false },
   role: {
     type: String,
     default: 'user'
@@ -23,6 +24,12 @@ var UserSchema = new Schema({
   hashedPassword: String,
   provider: String,
   salt: String,
+  OTP: String,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
+  lastSeen: Date,
+  updatedOn: { type: Date, default: Date.now },
+  createdOn: { type: Date },  
   facebook: {},
   twitter: {},
   google: {},
