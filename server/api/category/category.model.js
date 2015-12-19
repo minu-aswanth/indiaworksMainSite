@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var CategorySchema = new Schema({
   name: String,
   description: String,
-  subCategory: [{ type: Schema.Types.ObjectId, ref: 'SubCategory' }]
+  subCategories: [{ type: Schema.Types.ObjectId, ref: 'SubCategory' }]
 });
 
 module.exports = mongoose.model('Category', CategorySchema);

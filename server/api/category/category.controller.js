@@ -34,7 +34,7 @@ exports.update = function(req, res) {
   Category.findById(req.params.id, function (err, category) {
     if (err) { return handleError(res, err); }
     if(!category) { return res.send(404); }
-    var updated = _.merge(category, req.body);
+    var updated = _.extend(category, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, category);

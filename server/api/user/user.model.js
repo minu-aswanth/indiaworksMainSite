@@ -17,9 +17,9 @@ var UserSchema = new Schema({
   category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
   subCategory: [{ type: Schema.Types.ObjectId, ref: 'SubCategory' }],
   skill: [String],
-  rating: int,
+  rating: String,
   pictureId: [String],
-  documentId: [String]
+  documentId: [String],
   hashedPassword: String,
   provider: String,
   salt: String,

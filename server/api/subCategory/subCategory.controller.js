@@ -34,7 +34,7 @@ exports.update = function(req, res) {
   SubCategory.findById(req.params.id, function (err, subCategory) {
     if (err) { return handleError(res, err); }
     if(!subCategory) { return res.send(404); }
-    var updated = _.merge(subCategory, req.body);
+    var updated = _.extend(subCategory, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, subCategory);
