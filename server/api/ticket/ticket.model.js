@@ -8,7 +8,7 @@ var TicketSchema = new Schema({
   subCategory: { type: Schema.Types.ObjectId, ref: 'SubCategory' },
   service: { type: Schema.Types.ObjectId, ref: 'Service' },
   /*can be user*/
-  userId: { type: Schema.Types.ObjectId, ref: 'User' },
+  bookedByUser: { type: Schema.Types.ObjectId, ref: 'User' },
   /*not needed*/
   userName: String,
   /*not needed*/
@@ -18,8 +18,9 @@ var TicketSchema = new Schema({
   /*not needed*/
   location: String,
   ticketLocation: String,
-  workerAssigned: { type: Schema.Types.ObjectId, ref: 'Worker' },
-  rating: { type: Number, default: 0 }
+  workersAssigned: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  rating: { type: Number, default: 0 },
+  createdOn: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Ticket', TicketSchema);
