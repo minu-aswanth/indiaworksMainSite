@@ -4,6 +4,7 @@ angular.module('indiaworksMainSiteApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngMaterial',
   'ui.router',
   'ui.bootstrap'
 ])
