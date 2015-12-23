@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: plannerPortal', function () {
+describe('Service: PlannerPortalService', function () {
 
   // load the service's module
   beforeEach(module('indiaworksMainSiteApp'));
 
   // instantiate service
-  var plannerPortal;
-  beforeEach(inject(function (_plannerPortal_) {
-    plannerPortal = _plannerPortal_;
+  var PlannerPortalService;
+  beforeEach(inject(function (_PlannerPortalService_) {
+    PlannerPortalService = _PlannerPortalService_;
   }));
 
   it('should do something', function () {
-    expect(!!plannerPortal).toBe(true);
+    expect(!!PlannerPortalService).toBe(true);
   });
 
 });
