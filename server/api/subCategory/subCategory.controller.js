@@ -22,7 +22,7 @@ exports.show = function(req, res) {
 
 // Creates a new subCategory in the DB.
 exports.create = function(req, res) {
-  SubCategory.create(req.body, function(err, subCategory) {
+  SubCategory.create(req.body, function (err, subCategory) {
     if(err) { return handleError(res, err); }
     return res.json(201, subCategory);
   });

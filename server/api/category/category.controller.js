@@ -22,7 +22,7 @@ exports.show = function(req, res) {
 
 // Creates a new category in the DB.
 exports.create = function(req, res) {
-  Category.create(req.body, function(err, category) {
+  Category.create(req.body, function (err, category) {
     if(err) { return handleError(res, err); }
     return res.json(201, category);
   });

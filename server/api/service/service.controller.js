@@ -22,7 +22,7 @@ exports.show = function(req, res) {
 
 // Creates a new service in the DB.
 exports.create = function(req, res) {
-  Service.create(req.body, function(err, service) {
+  Service.create(req.body, function (err, service) {
     if(err) { return handleError(res, err); }
     return res.json(201, service);
   });
