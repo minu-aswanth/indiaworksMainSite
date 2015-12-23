@@ -50,7 +50,7 @@
 
           <md-input-container>
             <md-select multiple ng-model="servicesSelected" placeholder="please select">
-              <md-option ng-repeat="item in services" value="{{ item._id }}">{{ item.name }}</md-option>
+              <md-option ng-repeat="item in services track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
             </md-select>
           </md-input-container>
 
@@ -87,7 +87,7 @@
 
           <md-input-container>
             <md-select multiple ng-model="subCategoriesSelected" placeholder="please select">
-              <md-option ng-repeat="item in subCategories" value="{{ item._id }}">{{ item.name }}</md-option>
+              <md-option ng-repeat="item in subCategories track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
             </md-select>
           </md-input-container>
         </md-content>
