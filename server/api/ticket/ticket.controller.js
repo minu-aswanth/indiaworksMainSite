@@ -34,7 +34,7 @@ exports.update = function(req, res) {
   Ticket.findById(req.params.id, function (err, ticket) {
     if (err) { return handleError(res, err); }
     if(!ticket) { return res.send(404); }
-    var updated = _.merge(ticket, req.body);
+    var updated = _.extend(ticket, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, ticket);

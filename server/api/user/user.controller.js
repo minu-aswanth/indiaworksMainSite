@@ -54,12 +54,21 @@ exports.createWorker = function (req, res, next) {
   });
 };
 
+exports.getWorkers = function(req, res, next){
+  console.log("came here");
+  User.find({'role': 'worker'}, '-salt -password', function (err, workers) {
+    if (err) return next(err);
+    if (!workers) return res.send(401);
+    res.json(workers);
+  });
+};
+
 /**
  * Get a single user
  */
 exports.show = function (req, res, next) {
   var userId = req.params.id;
-
+  console.log("How did it come here");
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);

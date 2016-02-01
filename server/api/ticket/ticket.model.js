@@ -20,7 +20,8 @@ var TicketSchema = new Schema({
   ticketLocation: String,
   workersAssigned: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   rating: { type: Number, default: 0 },
-  createdOn: { type: Date, default: Date.now }
+  createdOn: { type: Date, default: Date.now },
+  resolved: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('Ticket', TicketSchema);

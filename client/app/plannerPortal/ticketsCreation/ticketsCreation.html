@@ -1,0 +1,41 @@
+  <form style = "width:50%">
+      <div layout="column">
+        <div class="md-whiteframe-z1">
+          <md-toolbar class="md-primary">
+            <h1 class="md-toolbar-tools">
+              Create a new ticket
+            </h1>
+          </md-toolbar>
+
+          <md-content layout-padding>
+            <md-input-container>
+              <md-select ng-model="categorySelected" placeholder="Category">
+                <md-option ng-repeat="item in categories" value="{{item._id}}">{{item.name}}</md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container>
+              <md-select ng-model="subCategorySelected" placeholder="Sub-Category">
+                <md-option ng-repeat="item in subCategories" value="{{item._id}}">{{item.name}}</md-option>
+              </md-select>
+            </md-input-container>
+            <br>
+
+            <md-input-container>
+              <md-select ng-model="serviceSelected" placeholder="Service">
+                <md-option ng-repeat="item in services" value="{{item._id}}">{{item.name}}</md-option>
+              </md-select>
+            </md-input-container>
+          </md-content>
+        </div>
+      </div>
+    <div class="md-actions" layout="row">
+      <md-button ng-click="saveTicket()" class="md-raised md-primary">
+        Save
+      </md-button>
+    </div>
+  </form>
+
+
+
+  
