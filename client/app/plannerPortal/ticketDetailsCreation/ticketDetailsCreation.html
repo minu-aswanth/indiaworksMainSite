@@ -1,25 +1,25 @@
-<form style = "width:50%">
-      <div layout="column">
-        <div class="md-whiteframe-z1">
-          <md-toolbar class="md-primary">
-            <h1 class="md-toolbar-tools">
-              Create a new service
-            </h1>
-          </md-toolbar>
+  <form style = "width:50%">
+    <div layout="column">
+      <div class="md-whiteframe-z1">
+        <md-toolbar class="md-primary">
+          <h1 class="md-toolbar-tools">
+            Create a new service
+          </h1>
+        </md-toolbar>
 
-          <md-content layout-padding>
-            <md-input-container>
-              <label>Service Title</label>      
-              <input ng-model="service.name" type="text">
-            </md-input-container>
+        <md-content layout-padding>
+          <md-input-container>
+            <label>Service Title</label>      
+            <input ng-model="service.name" type="text">
+          </md-input-container>
 
-            <md-input-container>
-              <label>Service Description</label>      
-              <input ng-model="service.description" type="text">
-            </md-input-container>
-          </md-content>
-        </div>
+          <md-input-container>
+            <label>Service Description</label>      
+            <input ng-model="service.description" type="text">
+          </md-input-container>
+        </md-content>
       </div>
+    </div>
     <div class="md-actions" layout="row">
       <md-button ng-click="saveService()" class="md-raised md-primary">
         Save
@@ -28,35 +28,35 @@
   </form>
 
   <form style = "width:50%">
-      <div layout="column">
-        <div class="md-whiteframe-z1">
-          <md-toolbar class="md-primary">
-            <h1 class="md-toolbar-tools">
-              Create a new sub-category
-            </h1>
-          </md-toolbar>
+    <div layout="column">
+      <div class="md-whiteframe-z1">
+        <md-toolbar class="md-primary">
+          <h1 class="md-toolbar-tools">
+            Create a new sub-category
+          </h1>
+        </md-toolbar>
 
-          <md-content layout-padding>
-            <md-input-container>
-              <label>Sub-category Title</label>      
-              <input ng-model="subCategory.name" type="text">
-            </md-input-container>
+        <md-content layout-padding>
+          <md-input-container>
+            <label>Sub-category Title</label>      
+            <input ng-model="subCategory.name" type="text">
+          </md-input-container>
 
-            <md-input-container>
-              <label>Sub-category Description</label>      
-              <input ng-model="subCategory.description" type="text">
-            </md-input-container>
-            <br>
+          <md-input-container>
+            <label>Sub-category Description</label>      
+            <input ng-model="subCategory.description" type="text">
+          </md-input-container>
+          <br>
 
-            <md-input-container>
-              <md-select multiple ng-model="servicesSelected" placeholder="please select">
-                <md-option ng-repeat="item in services" value="{{item._id}}">{{item.name}}</md-option>
-              </md-select>
-            </md-input-container>
+          <md-input-container>
+            <md-select multiple ng-model="servicesSelected" placeholder="please select">
+              <md-option ng-repeat="item in services track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
+            </md-select>
+          </md-input-container>
 
-          </md-content>
-        </div>
+        </md-content>
       </div>
+    </div>
     <div class="md-actions" layout="row">
       <md-button ng-click="saveSubCategory()" class="md-raised md-primary">
         Save
@@ -65,34 +65,34 @@
   </form>
 
   <form style = "width:50%">
-      <div layout="column">
-        <div class="md-whiteframe-z1">
-          <md-toolbar class="md-primary">
-            <h1 class="md-toolbar-tools">
-              Create a new category
-            </h1>
-          </md-toolbar>
+    <div layout="column">
+      <div class="md-whiteframe-z1">
+        <md-toolbar class="md-primary">
+          <h1 class="md-toolbar-tools">
+            Create a new category
+          </h1>
+        </md-toolbar>
 
-          <md-content layout-padding>
-            <md-input-container>
-              <label>Category Title</label>      
-              <input ng-model="category.name" type="text">
-            </md-input-container>
+        <md-content layout-padding>
+          <md-input-container>
+            <label>Category Title</label>      
+            <input ng-model="category.name" type="text">
+          </md-input-container>
 
-            <md-input-container>
-              <label>Category Description</label>      
-              <input ng-model="category.description" type="text">
-            </md-input-container>
-            <br>
+          <md-input-container>
+            <label>Category Description</label>      
+            <input ng-model="category.description" type="text">
+          </md-input-container>
+          <br>
 
-            <md-input-container>
-              <md-select multiple ng-model="subCategoriesSelected" placeholder="please select">
-                <md-option ng-repeat="item in subCategories" value="{{item._id}}">{{item.name}}</md-option>
-              </md-select>
-            </md-input-container>
-          </md-content>
-        </div>
+          <md-input-container>
+            <md-select multiple ng-model="subCategoriesSelected" placeholder="please select">
+              <md-option ng-repeat="item in subCategories track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
+            </md-select>
+          </md-input-container>
+        </md-content>
       </div>
+    </div>
     <div class="md-actions" layout="row">
       <md-button ng-click="saveCategory()" class="md-raised md-primary">
         Save
