@@ -3,12 +3,12 @@
 angular.module('indiaworksMainSiteApp')
   .controller('TicketDetailsCreationCtrl', function ($scope, $http, plannerPortal, $mdDialog) {
 
-    PlannerPortalService.getServices()
+    plannerPortal.getServices()
     	.then(function (data) {
     		$scope.services = data;
     	});
 
-    PlannerPortalService.getSubCategories()
+    plannerPortal.getSubCategories()
     	.then(function (data) {
     		$scope.subCategories = data;
     	});
@@ -19,7 +19,7 @@ angular.module('indiaworksMainSiteApp')
   });
 
   	$scope.saveService = function(){
-  		PlannerPortalService.createService({
+  		plannerPortal.createService({
           name: $scope.service.name,
           description: $scope.service.description
         })
@@ -29,7 +29,7 @@ angular.module('indiaworksMainSiteApp')
   	};
 
   	$scope.saveSubCategory = function(){
-  		PlannerPortalService.createSubCategory({
+  		plannerPortal.createSubCategory({
           name: $scope.subCategory.name,
           description: $scope.subCategory.description,
           services: $scope.servicesSelected
@@ -40,7 +40,7 @@ angular.module('indiaworksMainSiteApp')
   	};
 
   	$scope.saveCategory = function(){
-  		PlannerPortalService.createCategory({
+  		plannerPortal.createCategory({
           name: $scope.category.name,
           description: $scope.category.description,
           subCategories: $scope.subCategoriesSelected

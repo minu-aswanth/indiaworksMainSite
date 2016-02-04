@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('indiaworksMainSiteApp')
-  .service('PlannerPortalService', function ($http) {
+  .service('plannerPortal', function ($http) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     return {
       createTicket: function (data) {

@@ -6,7 +6,8 @@ angular.module('indiaworksMainSiteApp', [
   'ngSanitize',
   'ngMaterial',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'md.data.table'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
