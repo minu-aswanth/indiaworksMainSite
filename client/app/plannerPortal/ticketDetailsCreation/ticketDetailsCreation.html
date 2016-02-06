@@ -101,65 +101,65 @@
   </form>
 
 
-    <div layout="column" style="width:50%">
-        <div class="md-whiteframe-z1">
-          <md-toolbar class="md-primary">
-            <h1 class="md-toolbar-tools">
-              All Services
-            </h1>
-          </md-toolbar>
+  <div layout="column" style="width:50%">
+    <div class="md-whiteframe-z1">
+      <md-toolbar class="md-primary">
+        <h1 class="md-toolbar-tools">
+          All Services
+        </h1>
+      </md-toolbar>
 
-          <md-content layout-padding ng-repeat="service in services">
-            <h4>{{ service.name }}</h4>
-            <md-button ng-click="serviceEditModal(service)" class="md-raised md-primary">
-              Edit
-            </md-button>
-            <md-button ng-click="deleteService(service)" class="md-raised md-primary">
-              Delete
-            </md-button>
-          </md-content>
-        </div>
-      </div>
-      <br>
+      <md-content layout-padding ng-repeat="service in services">
+        <h4>{{ service.name }}</h4>
+        <md-button ng-click="serviceEditModal(service)" class="md-raised md-primary">
+          Edit
+        </md-button>
+        <md-button ng-click="deleteService(service)" class="md-raised md-primary">
+          Delete
+        </md-button>
+      </md-content>
+    </div>
+  </div>
+  <br>
 
-      <div layout="column" style="width:50%">
-        <div class="md-whiteframe-z1">
-          <md-toolbar class="md-primary">
-            <h1 class="md-toolbar-tools">
-              All Sub-Categories
-            </h1>
-          </md-toolbar>
+  <div layout="column" style="width:50%">
+    <div class="md-whiteframe-z1">
+      <md-toolbar class="md-primary">
+        <h1 class="md-toolbar-tools">
+          All Sub-Categories
+        </h1>
+      </md-toolbar>
 
-          <md-content layout-padding ng-repeat="subCategory in subCategories">
-            <h4>{{ subCategory.name }}</h4>
-            <md-button ng-click="subCategoryEditModal(subCategory)" class="md-raised md-primary">
-              Edit
-            </md-button>
-            <md-button ng-click="deleteSubCategory(subCategory)" class="md-raised md-primary">
-              Delete
-            </md-button>
-          </md-content>
-        </div>
-      </div>
-      <br>
+      <md-content layout-padding ng-repeat="subCategory in subCategories">
+        <h4>{{ subCategory.name }}</h4>
+        <md-button ng-click="subCategoryEditModal(subCategory)" class="md-raised md-primary">
+          Edit
+        </md-button>
+        <md-button ng-click="deleteSubCategory(subCategory)" class="md-raised md-primary">
+          Delete
+        </md-button>
+      </md-content>
+    </div>
+  </div>
+  <br>
 
-      <div layout="column" style="width:50%">
-        <div class="md-whiteframe-z1">
-          <md-toolbar class="md-primary">
-            <h1 class="md-toolbar-tools">
-              All Categories
-            </h1>
-          </md-toolbar>
+  <div layout="column" style="width:50%">
+    <div class="md-whiteframe-z1">
+      <md-toolbar class="md-primary">
+        <h1 class="md-toolbar-tools">
+          All Categories
+        </h1>
+      </md-toolbar>
 
-          <md-content layout-padding ng-repeat="category in categories">
-            <h4>{{ category.name }}</h4>
-            <md-button ng-click="categoryEditModal(category)" class="md-raised md-primary">
-              Edit
-            </md-button>
-            <md-button ng-click="deleteCategory(category)" class="md-raised md-primary">
-              Delete
-            </md-button>
-          </md-content>
-        </div>
-      </div>
-      <br>
+      <md-content layout-padding ng-repeat="category in categories">
+        <h4>{{ category.name }}</h4>
+        <md-button ng-click="categoryEditModal(category)" class="md-raised md-primary">
+          Edit
+        </md-button>
+        <md-button ng-click="deleteCategory(category)" class="md-raised md-primary">
+          Delete
+        </md-button>
+      </md-content>
+    </div>
+  </div>
+  <br>

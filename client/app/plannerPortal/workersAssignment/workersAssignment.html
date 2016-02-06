@@ -1,57 +1,53 @@
-<br>
-<md-select style="width:50%;" ng-model="selectedMode" placeholder="Select Mode">
-  <md-option ng-repeat="item in modes" value="{{item}}">{{item}}</md-option>
-</md-select>
-<br>
+  <br>
+  <md-select style="width:50%;" ng-model="selectedMode" placeholder="Select Mode">
+    <md-option ng-repeat="item in modes" value="{{ item }}">{{ item }}</md-option>
+  </md-select>
+  <br>
 
-<div layout="column" style="width:50%">
+  <div layout="column" style="width:50%">
     <div class="md-whiteframe-z1">
-        <md-toolbar class="md-primary">
-            <h1 class="md-toolbar-tools">
-              All Tickets
-            </h1>
-        </md-toolbar>
+      <md-toolbar class="md-primary">
+        <h1 class="md-toolbar-tools">
+          All Tickets
+        </h1>
+      </md-toolbar>
 
-        
+      <md-table-container>
+        <table md-table>
+          <thead md-head>
+            <tr md-row>
+              <th md-column> Id </th>
+              <th md-column> Assign Worker </th>
+              <th md-column> Resolved </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="ticket in tickets | filter:filterFunction">
+              <td md-cell>
+                {{ ticket._id }}
+              </td>
 
-        <md-table-container>
-  <table md-table>
-    <thead md-head>
-      <tr md-row>
-        <th md-column>Id</th>
-        <th md-column>Assign Worker</th>
-        <th md-column>Resolved</th>
-      </tr>
-    </thead>
-    <tbody md-body>
-      <tr md-row ng-repeat="ticket in tickets | filter:filterFunction">
-        <td md-cell>{{ ticket._id }}</td>
+              <td md-cell>
+                <md-input-container>
+                  <md-select multiple ng-model="ticket.workersAssigned" placeholder="Select Workers">
+                    <md-option ng-repeat="item in workers" value="{{ item._id }}">{{ item.name }}</md-option>
+                  </md-select>
+                </md-input-container>
 
-        <td md-cell>
-          <md-input-container>
-              <md-select multiple ng-model="ticket.workersAssigned" placeholder="Select Workers">
-                <md-option ng-repeat="item in workers" value="{{item._id}}">{{item.name}}</md-option>
-              </md-select>
-            </md-input-container>
+                <md-button ng-click="assignWorkers(ticket, ticket.workersAssigned)" class="md-raised md-primary">
+                  Assign
+                </md-button>
+              </td>
 
-            <md-button ng-click="assignWorkers(ticket, ticket.workersAssigned)" class="md-raised md-primary">
-              Assign
-            </md-button>
-        </td>
-
-        <td md-cell>
-          <md-switch ng-model="ticket.resolved" ng-click="resolvedCheck(ticket, !ticket.resolved)">
-              Resolved
-            </md-switch>
-        </td>
-        
-      
-      </tr>
-    </tbody>
-  </table>
-</md-table-container>
-
-        
+              <td md-cell>
+                <md-switch ng-model="ticket.resolved" ng-click="resolvedCheck(ticket, !ticket.resolved)">
+                  Resolved
+                </md-switch>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
     </div>
-</div>
-<br>
+  </div>
+  <br>

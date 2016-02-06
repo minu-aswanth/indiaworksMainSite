@@ -4,50 +4,50 @@ angular.module('indiaworksMainSiteApp')
   .controller('TicketDetailsCreationCtrl', function ($scope, $http, plannerPortal, $mdDialog) {
 
     plannerPortal.getServices()
-    	.then(function (data) {
-    		$scope.services = data;
+    	.then(function (response) {
+    		$scope.services = response;
     	});
 
     plannerPortal.getSubCategories()
-    	.then(function (data) {
-    		$scope.subCategories = data;
+    	.then(function (response) {
+    		$scope.subCategories = response;
     	});
 
-  plannerPortal.getCategories()
-  .then(function (data) {
-    $scope.categories = data;
-  });
+    plannerPortal.getCategories()
+      .then(function (response) {
+        $scope.categories = response;
+      });
 
-  	$scope.saveService = function(){
+  	$scope.saveService = function () {
   		plannerPortal.createService({
-          name: $scope.service.name,
-          description: $scope.service.description
-        })
-        .then(function (data) {
-          console.log(data);
-        });	
+        name: $scope.service.name,
+        description: $scope.service.description
+      })
+      .then(function (response) {
+        console.log(response);
+      });	
   	};
 
-  	$scope.saveSubCategory = function(){
+  	$scope.saveSubCategory = function () {
   		plannerPortal.createSubCategory({
-          name: $scope.subCategory.name,
-          description: $scope.subCategory.description,
-          services: $scope.servicesSelected
-        })
-        .then(function (data) {
-          console.log(data);
-        });	
+        name: $scope.subCategory.name,
+        description: $scope.subCategory.description,
+        services: $scope.servicesSelected
+      })
+      .then(function (response) {
+        console.log(response);
+      });	
   	};
 
-  	$scope.saveCategory = function(){
+  	$scope.saveCategory = function () {
   		plannerPortal.createCategory({
-          name: $scope.category.name,
-          description: $scope.category.description,
-          subCategories: $scope.subCategoriesSelected
-        })
-        .then(function (data) {
-          console.log(data);
-        });	
+        name: $scope.category.name,
+        description: $scope.category.description,
+        subCategories: $scope.subCategoriesSelected
+      })
+      .then(function (response) {
+        console.log(response);
+      });	
   	};
 
     $scope.serviceEditModal = function (service) {
@@ -65,7 +65,7 @@ angular.module('indiaworksMainSiteApp')
       });
     }; 
 
-    function serviceEditModalCtrl($scope, $mdDialog, servicePassed) {   
+    function serviceEditModalCtrl ($scope, $mdDialog, servicePassed) {   
       $scope.editService = servicePassed;
       
       $scope.cancel = function() {
@@ -73,13 +73,12 @@ angular.module('indiaworksMainSiteApp')
       };
 
       $scope.save = function () {
-
         plannerPortal.editService({
           _id: $scope.editService._id,
           name: $scope.editService.name,
           description: $scope.editService.description
         })
-        .then(function (data) {
+        .then(function (response) {
           
         });
 
@@ -103,7 +102,7 @@ angular.module('indiaworksMainSiteApp')
       });
     }; 
 
-    function subCategoryEditModalCtrl($scope, $mdDialog, subCategoryPassed, allServices) {   
+    function subCategoryEditModalCtrl ($scope, $mdDialog, subCategoryPassed, allServices) {   
       $scope.editSubCategory = subCategoryPassed;
       $scope.allServices = allServices;
       
@@ -112,14 +111,13 @@ angular.module('indiaworksMainSiteApp')
       };
 
       $scope.save = function () {
-
         plannerPortal.editSubCategory({
           _id: $scope.editSubCategory._id,
           name: $scope.editSubCategory.name,
           description: $scope.editSubCategory.description,
           services: $scope.editSubCategory.services
         })
-        .then(function (data) {
+        .then(function (response) {
           
         });
 
@@ -143,7 +141,7 @@ angular.module('indiaworksMainSiteApp')
       });
     }; 
 
-    function categoryEditModalCtrl($scope, $mdDialog, categoryPassed, allSubCategories) {   
+    function categoryEditModalCtrl ($scope, $mdDialog, categoryPassed, allSubCategories) {   
       $scope.editCategory = categoryPassed;
       $scope.allSubCategories = allSubCategories;
       
@@ -152,14 +150,13 @@ angular.module('indiaworksMainSiteApp')
       };
 
       $scope.save = function () {
-
         plannerPortal.editCategory({
           _id: $scope.editCategory._id,
           name: $scope.editCategory.name,
           description: $scope.editCategory.description,
           subCategories: $scope.editCategory.subCategories
         })
-        .then(function (data) {
+        .then(function (response) {
           
         });
 
