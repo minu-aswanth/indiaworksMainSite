@@ -5,12 +5,12 @@ angular.module('indiaworksMainSiteApp')
     
   	plannerPortal.getTickets()
     	.then(function (response) {
-    		$scope.tickets = response;
+    		$scope.tickets = response.data;
     	});
 
   	plannerPortal.getWorkers()
     	.then(function (response) {
-    		$scope.workers = response;
+    		$scope.workers = response.data;
     	});
 
     $scope.modes = ["All", "Pending", "Appointed", "Completed"];

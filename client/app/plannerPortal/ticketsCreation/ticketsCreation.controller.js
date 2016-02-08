@@ -5,17 +5,17 @@ angular.module('indiaworksMainSiteApp')
 
 	  plannerPortal.getServices()
 			.then(function (response) {
-				$scope.services = response;
+				$scope.services = response.data;
 			});
 
 		plannerPortal.getSubCategories()
 			.then(function (response) {
-				$scope.subCategories = response;
+				$scope.subCategories = response.data;
 			});
 
 		plannerPortal.getCategories()
 			.then(function (response) {
-				$scope.categories = response;
+				$scope.categories = response.data;
 			});
 
 		$scope.saveTicket = function () {
