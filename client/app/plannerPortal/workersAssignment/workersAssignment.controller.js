@@ -6,12 +6,18 @@ angular.module('indiaworksMainSiteApp')
   	plannerPortal.getTickets()
     	.then(function (response) {
     		$scope.tickets = response.data;
-    	});
+    	})
+      .catch(function (err) {
+        
+      });
 
   	plannerPortal.getWorkers()
     	.then(function (response) {
     		$scope.workers = response.data;
-    	});
+    	})
+      .catch(function (err) {
+        
+      });
 
     $scope.modes = ["All", "Pending", "Appointed", "Completed"];
     $scope.selectedMode = "All";
@@ -39,7 +45,7 @@ angular.module('indiaworksMainSiteApp')
       $mdToast.show({
         position: "bottom left",
         template: "<md-toast>" + text +"</md-toast>",
-        hideDelay: 1000
+        hideDelay: 2000
       });
     };
 
@@ -91,6 +97,9 @@ angular.module('indiaworksMainSiteApp')
       .then(function (response) {
         $scope.showToast("Assigned");
         console.log(response);
+      })
+      .catch(function (err) {
+        
       });	
   	};
 
@@ -107,6 +116,9 @@ angular.module('indiaworksMainSiteApp')
       .then(function (response) {
         $scope.showToast("Done");
         console.log(response);
+      })
+      .catch(function (err) {
+        
       }); 
     };
 

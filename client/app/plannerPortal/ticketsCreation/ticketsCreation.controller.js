@@ -6,17 +6,26 @@ angular.module('indiaworksMainSiteApp')
 	  plannerPortal.getServices()
 			.then(function (response) {
 				$scope.services = response.data;
-			});
+			})
+      .catch(function (err) {
+        
+      });
 
 		plannerPortal.getSubCategories()
 			.then(function (response) {
 				$scope.subCategories = response.data;
-			});
+			})
+      .catch(function (err) {
+        
+      });
 
 		plannerPortal.getCategories()
 			.then(function (response) {
 				$scope.categories = response.data;
-			});
+			})
+      .catch(function (err) {
+        
+      });
 
 		$scope.saveTicket = function () {
 			plannerPortal.createTicket({
@@ -26,7 +35,10 @@ angular.module('indiaworksMainSiteApp')
 	    })
 	    .then(function (response) {
 	      console.log(response);
-	    });	
+	    })
+      .catch(function (err) {
+        
+      });	
 		};
 	
 	});

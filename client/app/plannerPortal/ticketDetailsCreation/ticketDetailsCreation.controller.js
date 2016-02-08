@@ -6,16 +6,25 @@ angular.module('indiaworksMainSiteApp')
     plannerPortal.getServices()
     	.then(function (response) {
     		$scope.services = response.data;
-    	});
+    	})
+      .catch(function (err) {
+        
+      });
 
     plannerPortal.getSubCategories()
     	.then(function (response) {
     		$scope.subCategories = response.data;
-    	});
+    	})
+      .catch(function (err) {
+        
+      });
 
     plannerPortal.getCategories()
       .then(function (response) {
         $scope.categories = response.data;
+      })
+      .catch(function (err) {
+        
       });
 
   	$scope.saveService = function () {
@@ -25,6 +34,9 @@ angular.module('indiaworksMainSiteApp')
       })
       .then(function (response) {
         console.log(response);
+      })
+      .catch(function (err) {
+        
       });	
   	};
 
@@ -36,6 +48,9 @@ angular.module('indiaworksMainSiteApp')
       })
       .then(function (response) {
         console.log(response);
+      })
+      .catch(function (err) {
+        
       });	
   	};
 
@@ -47,6 +62,9 @@ angular.module('indiaworksMainSiteApp')
       })
       .then(function (response) {
         console.log(response);
+      })
+      .catch(function (err) {
+        
       });	
   	};
 
@@ -79,6 +97,9 @@ angular.module('indiaworksMainSiteApp')
           description: $scope.editService.description
         })
         .then(function (response) {
+          
+        })
+        .catch(function (err) {
           
         });
 
@@ -119,6 +140,9 @@ angular.module('indiaworksMainSiteApp')
         })
         .then(function (response) {
           
+        })
+        .catch(function (err) {
+          
         });
 
         $mdDialog.hide('Save edited subCategory');
@@ -157,6 +181,9 @@ angular.module('indiaworksMainSiteApp')
           subCategories: $scope.editCategory.subCategories
         })
         .then(function (response) {
+          
+        })
+        .catch(function (err) {
           
         });
 
