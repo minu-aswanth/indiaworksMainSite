@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('indiaworksMainSiteApp')
-  .controller('TicketsCreationCtrl', function ($scope, $http, plannerPortal) {
+  .controller('TicketsCreationCtrl', function ($scope, $http, plannerPortal, Toast) {
 
 	  plannerPortal.getServices()
 			.then(function (response) {
@@ -34,10 +34,22 @@ angular.module('indiaworksMainSiteApp')
 	      service: $scope.serviceSelected
 	    })
 	    .then(function (response) {
+        var config = {
+          text: "Ticket created successfully",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);
+
 	      console.log(response);
 	    })
       .catch(function (err) {
-        
+        var config = {
+          text: "Some error! Please check internet (or) try again",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);        
       });	
 		};
 	

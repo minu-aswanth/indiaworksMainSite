@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('indiaworksMainSiteApp')
-  .controller('TicketDetailsCreationCtrl', function ($scope, $http, plannerPortal, $mdDialog) {
+  .controller('TicketDetailsCreationCtrl', function ($scope, $http, plannerPortal, $mdDialog, Toast) {
 
     plannerPortal.getServices()
     	.then(function (response) {
@@ -33,11 +33,21 @@ angular.module('indiaworksMainSiteApp')
         description: $scope.service.description
       })
       .then(function (response) {
-        console.log(response);
+        var config = {
+          text: "New service saved successfully",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);          
       })
       .catch(function (err) {
-        
-      });	
+        var config = {
+          text: "Some error! Please check internet (or) try again",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);          
+      });
   	};
 
   	$scope.saveSubCategory = function () {
@@ -47,11 +57,21 @@ angular.module('indiaworksMainSiteApp')
         services: $scope.servicesSelected
       })
       .then(function (response) {
-        console.log(response);
+        var config = {
+          text: "New sub-category saved successfully",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);          
       })
       .catch(function (err) {
-        
-      });	
+        var config = {
+          text: "Some error! Please check internet (or) try again",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);          
+      });
   	};
 
   	$scope.saveCategory = function () {
@@ -61,11 +81,21 @@ angular.module('indiaworksMainSiteApp')
         subCategories: $scope.subCategoriesSelected
       })
       .then(function (response) {
-        console.log(response);
+        var config = {
+          text: "New category saved successfully",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);          
       })
       .catch(function (err) {
-        
-      });	
+        var config = {
+          text: "Some error! Please check internet (or) try again",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);          
+      });
   	};
 
     $scope.serviceEditModal = function (service) {
@@ -97,10 +127,20 @@ angular.module('indiaworksMainSiteApp')
           description: $scope.editService.description
         })
         .then(function (response) {
-          
+          var config = {
+            text: "Service edited successfully",
+            intervalTime: 3000,
+            position: "bottom left"
+          };
+          Toast.simpleToast(config);          
         })
         .catch(function (err) {
-          
+          var config = {
+            text: "Some error! Please check internet (or) try again",
+            intervalTime: 3000,
+            position: "bottom left"
+          };
+          Toast.simpleToast(config);          
         });
 
         $mdDialog.hide('Save edited service');
@@ -139,10 +179,20 @@ angular.module('indiaworksMainSiteApp')
           services: $scope.editSubCategory.services
         })
         .then(function (response) {
-          
+          var config = {
+            text: "Sub-category edited successfully",
+            intervalTime: 3000,
+            position: "bottom left"
+          };
+          Toast.simpleToast(config);          
         })
         .catch(function (err) {
-          
+          var config = {
+            text: "Some error! Please check internet (or) try again",
+            intervalTime: 3000,
+            position: "bottom left"
+          };
+          Toast.simpleToast(config);          
         });
 
         $mdDialog.hide('Save edited subCategory');
@@ -181,10 +231,20 @@ angular.module('indiaworksMainSiteApp')
           subCategories: $scope.editCategory.subCategories
         })
         .then(function (response) {
-          
+          var config = {
+            text: "Category edited successfully",
+            intervalTime: 3000,
+            position: "bottom left"
+          };
+          Toast.simpleToast(config);          
         })
         .catch(function (err) {
-          
+          var config = {
+            text: "Some error! Please check internet (or) try again",
+            intervalTime: 3000,
+            position: "bottom left"
+          };
+          Toast.simpleToast(config);          
         });
 
         $mdDialog.hide('Save edited category');

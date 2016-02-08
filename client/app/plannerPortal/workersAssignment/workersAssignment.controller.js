@@ -113,7 +113,7 @@ angular.module('indiaworksMainSiteApp')
       })
       .then(function (response) {
         var config = {
-          text: "Successfully updated",
+          text: "Successfully resolved the ticket",
           intervalTime: 3000,
           position: "bottom left"
         };
