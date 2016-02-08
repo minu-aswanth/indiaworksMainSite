@@ -5,9 +5,9 @@ angular.module('indiaworksMainSiteApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
     return {
       createTicket: function (data) {
-          return $http.post('/api/tickets', data).then(function (response) {
-            return response;
-          });
+        return $http.post('/api/tickets', data).then(function (response) {
+          return response;
+        });
       },
 
     	createService: function (data) {

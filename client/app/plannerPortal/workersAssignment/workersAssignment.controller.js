@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('indiaworksMainSiteApp')
-  .controller('WorkersAssignmentCtrl', function ($scope, plannerPortal, $http, $mdToast) {
+  .controller('WorkersAssignmentCtrl', function ($scope, plannerPortal, $http, Toast) {
     
   	plannerPortal.getTickets()
     	.then(function (response) {
@@ -39,14 +39,6 @@ angular.module('indiaworksMainSiteApp')
       else if($scope.selectedMode == "Completed") {
         return item.workersAssigned.length != 0 && item.resolved === true;
       }
-    };
-
-    $scope.showToast = function (text) {
-      $mdToast.show({
-        position: "bottom left",
-        template: "<md-toast>" + text +"</md-toast>",
-        hideDelay: 2000
-      });
     };
 
     // $scope.filterAll = function(item){
@@ -95,7 +87,13 @@ angular.module('indiaworksMainSiteApp')
         resolved: ticket.resolved
       })
       .then(function (response) {
-        $scope.showToast("Assigned");
+        var config = {
+          text: "Assigned successfully",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);
+
         console.log(response);
       })
       .catch(function (err) {
@@ -114,7 +112,13 @@ angular.module('indiaworksMainSiteApp')
         resolved: ifResolved
       })
       .then(function (response) {
-        $scope.showToast("Done");
+        var config = {
+          text: "Successfully updated",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);
+
         console.log(response);
       })
       .catch(function (err) {
