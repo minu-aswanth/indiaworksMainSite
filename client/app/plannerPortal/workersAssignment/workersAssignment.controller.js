@@ -97,7 +97,12 @@ angular.module('indiaworksMainSiteApp')
         console.log(response);
       })
       .catch(function (err) {
-        
+        var config = {
+          text: "Some error! Please check internet (or) try again",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);                
       });	
   	};
 
@@ -122,7 +127,12 @@ angular.module('indiaworksMainSiteApp')
         console.log(response);
       })
       .catch(function (err) {
-        
+        var config = {
+          text: "Some error! Please check internet (or) try again",
+          intervalTime: 3000,
+          position: "bottom left"
+        };
+        Toast.simpleToast(config);                
       }); 
     };
 
