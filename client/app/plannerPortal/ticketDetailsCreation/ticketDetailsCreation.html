@@ -109,7 +109,7 @@
         </h1>
       </md-toolbar>
 
-      <md-content layout-padding ng-repeat="service in services">
+      <md-content layout-padding ng-repeat="service in services track by $index">
         <h4>{{ service.name }}</h4>
         <md-button ng-click="serviceEditModal(service)" class="md-raised md-primary">
           Edit

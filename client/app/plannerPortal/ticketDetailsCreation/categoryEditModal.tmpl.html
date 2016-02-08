@@ -23,7 +23,7 @@
 
               <md-input-container>
                 <md-select multiple ng-model="editCategory.subCategories" placeholder="please select">
-                  <md-option ng-repeat="item in allSubCategories" value="{{ item._id }}">{{ item.name }}</md-option>
+                  <md-option ng-repeat="item in allSubCategories track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
                 </md-select>
               </md-input-container>
             </md-content>

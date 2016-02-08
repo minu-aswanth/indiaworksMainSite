@@ -10,20 +10,20 @@
         <md-content layout-padding>
           <md-input-container>
             <md-select ng-model="categorySelected" placeholder="Category">
-              <md-option ng-repeat="item in categories" value="{{ item._id }}">{{ item.name }}</md-option>
+              <md-option ng-repeat="item in categories track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
             </md-select>
           </md-input-container>
 
           <md-input-container>
             <md-select ng-model="subCategorySelected" placeholder="Sub-Category">
-              <md-option ng-repeat="item in subCategories" value="{{ item._id }}">{{ item.name }}</md-option>
+              <md-option ng-repeat="item in subCategories track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
             </md-select>
           </md-input-container>
           <br>
 
           <md-input-container>
             <md-select ng-model="serviceSelected" placeholder="Service">
-              <md-option ng-repeat="item in services" value="{{ item._id }}">{{ item.name }}</md-option>
+              <md-option ng-repeat="item in services track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
             </md-select>
           </md-input-container>
         </md-content>

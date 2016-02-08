@@ -1,6 +1,6 @@
   <br>
   <md-select style="width:50%;" ng-model="selectedMode" placeholder="Select Mode">
-    <md-option ng-repeat="item in modes" value="{{ item }}">{{ item }}</md-option>
+    <md-option ng-repeat="item in modes track by $index" value="{{ item }}">{{ item }}</md-option>
   </md-select>
   <br>
 
@@ -22,7 +22,7 @@
             </tr>
           </thead>
           <tbody md-body>
-            <tr md-row ng-repeat="ticket in tickets | filter:filterFunction">
+            <tr md-row ng-repeat="ticket in tickets | filter:filterFunction track by $index">
               <td md-cell>
                 {{ ticket._id }}
               </td>
@@ -30,7 +30,7 @@
               <td md-cell>
                 <md-input-container>
                   <md-select multiple ng-model="ticket.workersAssigned" placeholder="Select Workers">
-                    <md-option ng-repeat="item in workers" value="{{ item._id }}">{{ item.name }}</md-option>
+                    <md-option ng-repeat="item in workers track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
                   </md-select>
                 </md-input-container>
 
