@@ -6,7 +6,7 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 
 var validationError = function(res, err) {
-  return res.json(422, err);
+  return res.status(422).json(err);
 };
 
 /**
@@ -15,8 +15,8 @@ var validationError = function(res, err) {
  */
 exports.index = function(req, res) {
   User.find({}, '-salt -hashedPassword', function (err, users) {
-    if(err) return res.send(500, err);
-    res.json(200, users);
+    if(err) return res.status(500).json(err);
+    res.status(200).json(users);
   });
 };
 
@@ -58,7 +58,7 @@ exports.getWorkers = function(req, res, next){
   console.log("came here");
   User.find({'role': 'worker'}, '-salt -password', function (err, workers) {
     if (err) return next(err);
-    if (!workers) return res.send(401);
+    if (!workers) return res.sendStatus(401);
     res.json(workers);
   });
 };
@@ -71,7 +71,7 @@ exports.show = function (req, res, next) {
   console.log("How did it come here");
   User.findById(userId, function (err, user) {
     if (err) return next(err);
-    if (!user) return res.send(401);
+    if (!user) return res.sendStatus(401);
     res.json(user.profile);
   });
 };
@@ -82,8 +82,8 @@ exports.show = function (req, res, next) {
  */
 exports.destroy = function(req, res) {
   User.findByIdAndRemove(req.params.id, function(err, user) {
-    if(err) return res.send(500, err);
-    return res.send(204);
+    if(err) return res.status(500).json(err);
+    return res.sendStatus(204);
   });
 };
 
@@ -100,10 +100,10 @@ exports.changePassword = function(req, res, next) {
       user.password = newPass;
       user.save(function(err) {
         if (err) return validationError(res, err);
-        res.send(200);
+        res.sendStatus(200);
       });
     } else {
-      res.send(403);
+      res.sendStatus(403);
     }
   });
 };
@@ -117,7 +117,7 @@ exports.me = function(req, res, next) {
     _id: userId
   }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
     if (err) return next(err);
-    if (!user) return res.json(401);
+    if (!user) return res.sendStatus(401);
     res.json(user);
   });
 };

@@ -7,15 +7,18 @@ var Ticket = require('./ticket.model');
 exports.index = function(req, res) {
   Ticket.find(function (err, tickets) {
     if(err) { return handleError(res, err); }
-    return res.json(200, tickets);
-  });
+    return res.status(200).json(tickets);
+  })
+  .populate('category')
+  .populate('subCategory')
+  .populate('service');
 };
 
 // Get a single ticket
 exports.show = function(req, res) {
   Ticket.findById(req.params.id, function (err, ticket) {
     if(err) { return handleError(res, err); }
-    if(!ticket) { return res.send(404); }
+    if(!ticket) { return res.sendStatus(404); }
     return res.json(ticket);
   });
 };
@@ -24,7 +27,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Ticket.create(req.body, function(err, ticket) {
     if(err) { return handleError(res, err); }
-    return res.json(201, ticket);
+    return res.status(201).json(ticket);
   });
 };
 
@@ -33,11 +36,13 @@ exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   Ticket.findById(req.params.id, function (err, ticket) {
     if (err) { return handleError(res, err); }
-    if(!ticket) { return res.send(404); }
+    if(!ticket) { return res.sendStatus(404); }
     var updated = _.extend(ticket, req.body);
     updated.save(function (err) {
+      console.log(updated.workersAssigned);
+      console.log(err);
       if (err) { return handleError(res, err); }
-      return res.json(200, ticket);
+      return res.status(200).json(ticket);
     });
   });
 };
@@ -46,14 +51,14 @@ exports.update = function(req, res) {
 exports.destroy = function(req, res) {
   Ticket.findById(req.params.id, function (err, ticket) {
     if(err) { return handleError(res, err); }
-    if(!ticket) { return res.send(404); }
+    if(!ticket) { return res.sendStatus(404); }
     ticket.remove(function(err) {
       if(err) { return handleError(res, err); }
-      return res.send(204);
+      return res.sendStatus(204);
     });
   });
 };
 
 function handleError(res, err) {
-  return res.send(500, err);
+  return res.status(500).json(err);
 }
