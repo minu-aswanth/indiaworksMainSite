@@ -7,7 +7,7 @@ var Service = require('./service.model');
 exports.index = function(req, res) {
   Service.find(function (err, services) {
     if(err) { return handleError(res, err); }
-    return res.json(200, services);
+    return res.status(200).json(services);
   });
 };
 
@@ -15,7 +15,7 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   Service.findById(req.params.id, function (err, service) {
     if(err) { return handleError(res, err); }
-    if(!service) { return res.send(404); }
+    if(!service) { return res.sendStatus(404); }
     return res.json(service);
   });
 };
@@ -24,7 +24,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Service.create(req.body, function (err, service) {
     if(err) { return handleError(res, err); }
-    return res.json(201, service);
+    return res.status(201).json(service);
   });
 };
 
@@ -33,11 +33,11 @@ exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   Service.findById(req.params.id, function (err, service) {
     if (err) { return handleError(res, err); }
-    if(!service) { return res.send(404); }
+    if(!service) { return res.sendStatus(404); }
     var updated = _.merge(service, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.json(200, service);
+      return res.status(200).json(service);
     });
   });
 };
@@ -46,14 +46,14 @@ exports.update = function(req, res) {
 exports.destroy = function(req, res) {
   Service.findById(req.params.id, function (err, service) {
     if(err) { return handleError(res, err); }
-    if(!service) { return res.send(404); }
+    if(!service) { return res.sendStatus(404); }
     service.remove(function(err) {
       if(err) { return handleError(res, err); }
-      return res.send(204);
+      return res.sendStatus(204);
     });
   });
 };
 
 function handleError(res, err) {
-  return res.send(500, err);
+  return res.status(500).json(err);
 }
