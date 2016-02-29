@@ -21,6 +21,9 @@ var TicketSchema = new Schema({
   workersAssigned: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   rating: { type: Number, default: 0 },
   createdOn: { type: Date, default: Date.now },
+  updatedOn: { type: Date, default: Date.now },
+  userScheduledTime: { type: Date, default: Date.now },
+  plannerScheduledTime: { type: Date, default: Date.now },
   resolved: { type: Boolean, default: false }
 });
 
