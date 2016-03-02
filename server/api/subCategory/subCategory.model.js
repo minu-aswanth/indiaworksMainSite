@@ -29,7 +29,7 @@ SubCategorySchema
 
 // Validate empty subCategories
 SubCategorySchema
-	.path('subCategories')
+	.path('services')
 	.validate(function (services) {
 		return services.length;
 	}, 'Please select at least one Sub Category');

@@ -10,7 +10,7 @@ router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', auth.hasRole('planner'), controller.update);
-router.patch('/:id' auth.hasRole('planner'), controller.update);
-router.delete('/:id' auth.hasRole('planner'), controller.destroy);
+router.patch('/:id', auth.hasRole('planner'), controller.update);
+router.delete('/:id', auth.hasRole('planner'), controller.destroy);
 
 module.exports = router;
