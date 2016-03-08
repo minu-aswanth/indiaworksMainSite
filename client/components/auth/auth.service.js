@@ -137,12 +137,12 @@ angular.module('indiaworksMainSiteApp')
       },
 
       /**
-       * Check if a user is an planner
+       * Check if a user is an planner (or) admin
        *
        * @return {Boolean}
        */
       isPlanner: function() {
-        return currentUser.role === 'planner';
+        return currentUser.role === 'planner' || currentUser.role === 'admin';
       },
 
       /**
