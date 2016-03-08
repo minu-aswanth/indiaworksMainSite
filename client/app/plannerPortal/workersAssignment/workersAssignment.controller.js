@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('indiaworksMainSiteApp')
-  .controller('WorkersAssignmentCtrl', function ($scope, plannerPortal, $http, Toast, $mdDialog) {
+  .controller('WorkersAssignmentCtrl', function ($scope, plannerPortal, $http, Toast, $mdDialog, $stateParams, $state, $location) {
     
   	plannerPortal.getTickets()
     	.then(function (response) {
@@ -20,12 +20,23 @@ angular.module('indiaworksMainSiteApp')
       });
 
     $scope.modes = ["All", "Pending", "Appointed", "Completed"];
-    $scope.selectedMode = "All";
+
+    if($scope.modes.indexOf($stateParams.filter) != -1) {
+      $scope.selectedMode = $stateParams.filter;
+      $scope.selectedModeIndex = $scope.modes.indexOf($stateParams.filter);
+    } else {
+      $scope.selectedMode = "All";
+      $scope.selectedModeIndex = 0;
+    }
+
     $scope.currentFilter = "filterAll";
 
     $scope.assignCurrentTab = function (index) {
       $scope.selectedMode = $scope.modes[index];
-      return $scope.modes[index];
+      $state.go('.', { 'filter': $scope.modes[index] }, { notify: false }); // works well without reload of controller
+      // $state.transitionTo('workersAssignment', { 'filter': $scope.modes[index] }, { notify: false }); // works well without reload of controller
+      // $location.search('filter', $scope.modes[index]); // reloads the controller
+      // More info http://stackoverflow.com/a/30246785/3476748
     };
 
     $scope.filterFunction = function (item) {

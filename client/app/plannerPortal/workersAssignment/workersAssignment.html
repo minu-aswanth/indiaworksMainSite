@@ -10,8 +10,8 @@
     </md-toolbar>
 
     <md-content>
-      <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab ng-repeat="item in modes track by $index" label="{{ assignCurrentTab($index) }}">
+      <md-tabs md-selected="selectedModeIndex" md-dynamic-height md-border-bottom>
+        <md-tab ng-repeat="item in modes track by $index" label="{{ item }}" ng-click="assignCurrentTab($index)">
           <md-table-container>
             <table md-table>
               <thead md-head>
