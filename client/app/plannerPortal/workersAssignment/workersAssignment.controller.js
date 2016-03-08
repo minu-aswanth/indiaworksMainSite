@@ -23,8 +23,13 @@ angular.module('indiaworksMainSiteApp')
     $scope.selectedMode = "All";
     $scope.currentFilter = "filterAll";
 
+    $scope.assignCurrentTab = function (index) {
+      $scope.selectedMode = $scope.modes[index];
+      return $scope.modes[index];
+    };
+
     $scope.filterFunction = function (item) {
-      if($scope.selectedMode == "All"){
+      if($scope.selectedMode == "All") {
         return true;
       }
 
@@ -97,41 +102,6 @@ angular.module('indiaworksMainSiteApp')
         $mdDialog.hide('Saved');
       }
     }
-
-    // $scope.filterAll = function(item){
-    //   return true;
-    // }
-
-    // $scope.filterPending = function(item){
-    //   return item.workersAssigned.length === 0;
-    // }
-
-    // $scope.filterAppointed = function(item){
-    //   return item.workersAssigned.length != 0 && item.resolved === false;
-    // }
-
-    // $scope.filterCompleted = function(item){
-    //   return item.workersAssigned.length != 0 && item.resolved === true;
-    // }
-
-    // $scope.modeChanged = function(){
-    //   if($scope.selectedMode == "All"){
-    //     $scope.currentFilter = "filterAll";
-    //   }
-
-    //   else if($scope.selectedMode == "Pending"){
-    //     $scope.currentFilter = "filterPending";
-    //   }
-
-    //   else if($scope.selectedMode == "Appointed"){
-    //     $scope.currentFilter = "filterAppointed";
-    //   }
-
-    //   else if($scope.selectedMode == "Completed"){
-    //     $scope.currentFilter = "filterCompleted";
-    //   }
-
-    // }
 
   	$scope.assignWorkers = function (ticket, workersSelected) {
       console.log(workersSelected);

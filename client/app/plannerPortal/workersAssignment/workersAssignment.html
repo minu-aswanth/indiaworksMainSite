@@ -1,52 +1,55 @@
-  <br>
-  <md-select id="tableFilter" ng-model="selectedMode" placeholder="Select Mode">
-    <md-option ng-repeat="item in modes track by $index" value="{{ item }}">{{ item }}</md-option>
-  </md-select>
-  <br>
+<div ng-include="'components/navbar/navbar.html'"></div>
 
-  <div layout="column" id="table">
-    <div class="md-whiteframe-z1">
-      <md-toolbar class="md-primary">
-        <h1 class="md-toolbar-tools">
-          All Tickets
-        </h1>
-      </md-toolbar>
+<div layout="column" class="padding-left-5 padding-right-5 padding-bottom-5" ng-cloak>
+  <div class="md-whiteframe-z1">
 
-      <md-table-container>
-        <table md-table>
-          <thead md-head>
-            <tr md-row>
-              <th md-column> Sl.No </th>
-              <th md-column> ID </th>
-              <th md-column> Assign Worker </th>
-              <th md-column> Resolved </th>
-            </tr>
-          </thead>
-          <tbody md-body>
-            <tr md-row ng-repeat="ticket in tickets | filter:filterFunction track by $index">
-              <td md-cell>
-                {{ $index + 1 }}
-              </td>
+    <md-toolbar class="md-primary">
+      <h1 class="md-toolbar-tools">
+        Tickets list
+      </h1>
+    </md-toolbar>
 
-              <td md-cell>
-                {{ ticket._id }}
-              </td>
+    <md-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab ng-repeat="item in modes track by $index" label="{{ assignCurrentTab($index) }}">
+          <md-table-container>
+            <table md-table>
+              <thead md-head>
+                <tr md-row>
+                  <th md-column> Sl.No </th>
+                  <th md-column> ID </th>
+                  <th md-column> Assign Worker </th>
+                  <th md-column> Resolved </th>
+                </tr>
+              </thead>
+              <tbody md-body>
+                <tr md-row ng-repeat="ticket in tickets | filter:filterFunction track by $index">
+                  <td md-cell>
+                    {{ $index + 1 }}
+                  </td>
 
-              <td md-cell>
-                <md-button ng-click="workersAssignmentModal(ticket)" class="md-raised md-primary">
-                  Assign
-                </md-button>
-              </td>
+                  <td md-cell>
+                    {{ ticket._id }}
+                  </td>
 
-              <td md-cell>
-                <md-switch ng-model="ticket.resolved" ng-click="resolvedCheck(ticket, !ticket.resolved)">
-                  Resolved
-                </md-switch>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </md-table-container>
-    </div>
+                  <td md-cell>
+                    <md-button ng-click="workersAssignmentModal(ticket)" class="md-raised md-primary">
+                      Assign
+                    </md-button>
+                  </td>
+
+                  <td md-cell>
+                    <md-switch ng-model="ticket.resolved" ng-click="resolvedCheck(ticket, !ticket.resolved)">
+                      Resolved
+                    </md-switch>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+        </md-tab>
+      </md-tabs>
+    </md-content>
+
   </div>
-  <br>
+</div>
