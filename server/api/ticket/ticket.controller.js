@@ -39,7 +39,7 @@ exports.update = function(req, res) {
     if(!ticket) { return res.sendStatus(404); }
     var updated = _.extend(ticket, req.body);
     updated.save(function (err) {
-      console.log(updated.workersAssigned);
+      console.log(updated);
       console.log(err);
       if (err) { return handleError(res, err); }
       return res.status(200).json(ticket);

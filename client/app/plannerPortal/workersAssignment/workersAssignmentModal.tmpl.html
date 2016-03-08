@@ -1,0 +1,32 @@
+  <md-dialog aria-label="Edit Category Details" style="width:80%;">
+    <form>
+      <md-dialog-content>
+        <div layout="column">
+          <div class="md-whiteframe-z1">
+            <md-toolbar class="md-primary">
+              <h1 class="md-toolbar-tools">
+                Assign Workers
+              </h1>
+            </md-toolbar>
+
+            <md-content layout-padding>
+              <md-input-container>
+                <md-select multiple ng-model="editTicket.workersAssigned" placeholder="Select Workers">
+                  <md-option ng-repeat="item in allWorkers track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
+                </md-select>
+              </md-input-container>
+            </md-content>
+          </div>
+        </div>
+      </md-dialog-content>
+      <div class="md-actions" layout="row">
+        <md-button ng-click="cancel()" class="md-raised">
+          Discard changes
+        </md-button>
+        <md-button ng-click="save()" class="md-raised md-primary">
+          Save
+        </md-button>
+      </div>
+    </form>
+  </md-dialog>
+

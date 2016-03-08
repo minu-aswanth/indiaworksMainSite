@@ -1,10 +1,10 @@
   <br>
-  <md-select style="width:50%;" ng-model="selectedMode" placeholder="Select Mode">
+  <md-select id="tableFilter" ng-model="selectedMode" placeholder="Select Mode">
     <md-option ng-repeat="item in modes track by $index" value="{{ item }}">{{ item }}</md-option>
   </md-select>
   <br>
 
-  <div layout="column" style="width:50%">
+  <div layout="column" id="table">
     <div class="md-whiteframe-z1">
       <md-toolbar class="md-primary">
         <h1 class="md-toolbar-tools">
@@ -28,13 +28,7 @@
               </td>
 
               <td md-cell>
-                <md-input-container>
-                  <md-select multiple ng-model="ticket.workersAssigned" placeholder="Select Workers">
-                    <md-option ng-repeat="item in workers track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
-                  </md-select>
-                </md-input-container>
-
-                <md-button ng-click="assignWorkers(ticket, ticket.workersAssigned)" class="md-raised md-primary">
+                <md-button ng-click="workersAssignmentModal(ticket)" class="md-raised md-primary">
                   Assign
                 </md-button>
               </td>

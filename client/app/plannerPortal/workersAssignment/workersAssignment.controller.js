@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('indiaworksMainSiteApp')
-  .controller('WorkersAssignmentCtrl', function ($scope, plannerPortal, $http, Toast) {
+  .controller('WorkersAssignmentCtrl', function ($scope, plannerPortal, $http, Toast, $mdDialog) {
     
   	plannerPortal.getTickets()
     	.then(function (response) {
@@ -40,6 +40,63 @@ angular.module('indiaworksMainSiteApp')
         return item.workersAssigned.length != 0 && item.resolved === true;
       }
     };
+
+    $scope.workersAssignmentModal = function (ticket) {
+      $mdDialog.show({
+        controller: workersAssignmentModalCtrl,
+        templateUrl: '/app/plannerPortal/workersAssignment/workersAssignmentModal.tmpl.html',
+        locals: {
+          ticketPassed: ticket,
+          allWorkers: $scope.workers
+        }
+      })
+      .then(function (response) {
+
+      }, function () {
+        console.log('Cancel assigning worker');
+      });
+    }; 
+
+    function workersAssignmentModalCtrl ($scope, $mdDialog, ticketPassed, allWorkers) {   
+      $scope.editTicket = ticketPassed;
+      $scope.allWorkers = allWorkers;
+      
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+      $scope.save = function () {
+        console.log($scope.editTicket);
+        plannerPortal.editTicket({
+          _id: $scope.editTicket._id,
+          category: $scope.editTicket.category._id,
+          subCategory: $scope.editTicket.subCategory._id,
+          service: $scope.editTicket.service._id,
+          workersAssigned: $scope.editTicket.workersAssigned,
+          resolved: $scope.editTicket.resolved
+        })
+        .then(function (response) {
+          var config = {
+            text: "Assigned successfully",
+            intervalTime: 3000,
+            position: "bottom left"
+          };
+          Toast.simpleToast(config);
+
+          console.log(response);
+        })
+        .catch(function (err) {
+          var config = {
+            text: "Some error! Please check internet (or) try again",
+            intervalTime: 3000,
+            position: "bottom left"
+          };
+          Toast.simpleToast(config);                
+        }); 
+
+        $mdDialog.hide('Saved');
+      }
+    }
 
     // $scope.filterAll = function(item){
     //   return true;
