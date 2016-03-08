@@ -16,13 +16,18 @@
         <table md-table>
           <thead md-head>
             <tr md-row>
-              <th md-column> Id </th>
+              <th md-column> Sl.No </th>
+              <th md-column> ID </th>
               <th md-column> Assign Worker </th>
               <th md-column> Resolved </th>
             </tr>
           </thead>
           <tbody md-body>
             <tr md-row ng-repeat="ticket in tickets | filter:filterFunction track by $index">
+              <td md-cell>
+                {{ $index + 1 }}
+              </td>
+
               <td md-cell>
                 {{ ticket._id }}
               </td>
