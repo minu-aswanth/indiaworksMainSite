@@ -1,165 +1,234 @@
-  <form style = "width:50%">
-    <div layout="column">
-      <div class="md-whiteframe-z1">
-        <md-toolbar class="md-primary">
-          <h1 class="md-toolbar-tools">
-            Create a new service
-          </h1>
-        </md-toolbar>
+<div ng-include="'components/navbar/navbar.html'"></div>
 
-        <md-content layout-padding>
-          <md-input-container>
-            <label>Service Title</label>      
-            <input ng-model="service.name" type="text">
-          </md-input-container>
+<div layout-margin class="padding-bottom-2">
+  <div class="md-whiteframe-z2">
+    <md-toolbar class="md-accent">
+      <h1 class="md-toolbar-tools">
+        Create New
+      </h1>
+    </md-toolbar>
 
-          <md-input-container>
-            <label>Service Description</label>      
-            <input ng-model="service.description" type="text">
-          </md-input-container>
-        </md-content>
+    <div layout="column" layout-gt-sm="row" layout-padding layout-wrap>
+
+      <div class="flex">
+        <form>
+          <div layout="column">
+
+            <div class="md-whiteframe-z1">
+              <md-toolbar class="md-primary">
+                <h1 class="md-toolbar-tools">
+                  Create a new service
+                </h1>
+              </md-toolbar>
+
+              <md-content layout-padding layout-wrap>
+                <div layout-gt-sm="column">
+                  <md-input-container>
+                    <label>Service Title</label>      
+                    <input ng-model="service.name" type="text">
+                  </md-input-container>
+
+                  <md-input-container>
+                    <label>Service Description</label>      
+                    <input ng-model="service.description" type="text">
+                  </md-input-container>
+                </div>
+              </md-content>
+            
+              <div layout="row">
+                <md-dialog-actions>
+                  <md-button ng-click="saveService()" class="md-raised md-primary">
+                    Save
+                  </md-button>
+                </md-dialog-actions>
+              </div>
+            </div>
+          
+          </div>
+        </form>
       </div>
-    </div>
-    <div class="md-actions" layout="row">
-      <md-button ng-click="saveService()" class="md-raised md-primary">
-        Save
-      </md-button>
-    </div>
-  </form>
 
-  <form style = "width:50%">
-    <div layout="column">
-      <div class="md-whiteframe-z1">
-        <md-toolbar class="md-primary">
-          <h1 class="md-toolbar-tools">
-            Create a new sub-category
-          </h1>
-        </md-toolbar>
+      <div class="flex">
+        <form>
+          <div layout="column">
 
-        <md-content layout-padding>
-          <md-input-container>
-            <label>Sub-category Title</label>      
-            <input ng-model="subCategory.name" type="text">
-          </md-input-container>
+            <div class="md-whiteframe-z1">
+              <md-toolbar class="md-primary">
+                <h1 class="md-toolbar-tools">
+                  Create a new sub-category
+                </h1>
+              </md-toolbar>
 
-          <md-input-container>
-            <label>Sub-category Description</label>      
-            <input ng-model="subCategory.description" type="text">
-          </md-input-container>
-          <br>
+              <md-content layout-padding layout-wrap>
+                <div layout="column">
+                  <div layout-gt-sm="row">
+                    <div flex="60">
+                      <md-input-container flex-gt-sm>
+                        <label>Sub-category Title</label>      
+                        <input ng-model="subCategory.name" type="text">
+                      </md-input-container>
+                    </div>
 
-          <md-input-container>
-            <md-select multiple ng-model="servicesSelected" placeholder="please select">
-              <md-option ng-repeat="item in services track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
-            </md-select>
-          </md-input-container>
+                    <div class="flex">
+                      <md-input-container flex-gt-sm>
+                        <md-select multiple ng-model="servicesSelected" placeholder="Select service">
+                          <md-option ng-repeat="item in services track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
+                        </md-select>
+                      </md-input-container>
+                    </div>
+                  </div>
 
-        </md-content>
+                  <md-input-container flex-gt-sm>
+                    <label>Sub-category Description</label>      
+                    <textarea ng-model="subCategory.description"></textarea>
+                  </md-input-container>
+                </div>
+              </md-content>
+
+              <div layout="row">
+                <md-dialog-actions>
+                  <md-button ng-click="saveService()" class="md-raised md-primary">
+                    Save
+                  </md-button>
+                </md-dialog-actions>
+              </div>
+
+            </div>
+          </div>
+        </form>
       </div>
-    </div>
-    <div class="md-actions" layout="row">
-      <md-button ng-click="saveSubCategory()" class="md-raised md-primary">
-        Save
-      </md-button>
-    </div>
-  </form>
 
-  <form style = "width:50%">
-    <div layout="column">
-      <div class="md-whiteframe-z1">
-        <md-toolbar class="md-primary">
-          <h1 class="md-toolbar-tools">
-            Create a new category
-          </h1>
-        </md-toolbar>
+      <div class="flex">
+        <form>
+          <div layout="column">
 
-        <md-content layout-padding>
-          <md-input-container>
-            <label>Category Title</label>      
-            <input ng-model="category.name" type="text">
-          </md-input-container>
+            <div class="md-whiteframe-z1">
+              <md-toolbar class="md-primary">
+                <h1 class="md-toolbar-tools">
+                  Create a new category
+                </h1>
+              </md-toolbar>
 
-          <md-input-container>
-            <label>Category Description</label>      
-            <input ng-model="category.description" type="text">
-          </md-input-container>
-          <br>
+              <md-content layout-padding layout-wrap>
+                <div layout="column">
+                  <div layout-gt-sm="row">
+                    <div flex="60">
+                      <md-input-container>
+                        <label>Category Title</label>      
+                        <input ng-model="category.name" type="text">
+                      </md-input-container>
+                    </div>
 
-          <md-input-container>
-            <md-select multiple ng-model="subCategoriesSelected" placeholder="please select">
-              <md-option ng-repeat="item in subCategories track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
-            </md-select>
-          </md-input-container>
-        </md-content>
+                    <div flex>
+                      <md-input-container>
+                          <md-select multiple ng-model="subCategoriesSelected" placeholder="Select Sub-category">
+                          <md-option ng-repeat="item in subCategories track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
+                        </md-select>
+                      </md-input-container>
+                    </div>
+                  </div>
+
+                  <md-input-container>
+                    <label>Category Description</label>      
+                    <input ng-model="category.description" type="text">
+                  </md-input-container>
+
+                </div>
+              </md-content>
+
+              <div layout="row">
+                <md-dialog-actions>
+                  <md-button ng-click="saveService()" class="md-raised md-primary">
+                    Save
+                  </md-button>
+                </md-dialog-actions>
+              </div>
+            </div>
+
+          </div>
+        </form>
       </div>
-    </div>
-    <div class="md-actions" layout="row">
-      <md-button ng-click="saveCategory()" class="md-raised md-primary">
-        Save
-      </md-button>
-    </div>
-  </form>
 
-
-  <div layout="column" style="width:50%">
-    <div class="md-whiteframe-z1">
-      <md-toolbar class="md-primary">
-        <h1 class="md-toolbar-tools">
-          All Services
-        </h1>
-      </md-toolbar>
-
-      <md-content layout-padding ng-repeat="service in services track by $index">
-        <h4>{{ service.name }}</h4>
-        <md-button ng-click="serviceEditModal(service)" class="md-raised md-primary">
-          Edit
-        </md-button>
-        <md-button ng-click="deleteService(service)" class="md-raised md-primary">
-          Delete
-        </md-button>
-      </md-content>
     </div>
   </div>
-  <br>
+</div>
 
-  <div layout="column" style="width:50%">
-    <div class="md-whiteframe-z1">
-      <md-toolbar class="md-primary">
-        <h1 class="md-toolbar-tools">
-          All Sub-Categories
-        </h1>
-      </md-toolbar>
+<div layout-margin class="padding-top-2 padding-bottom-1">
+  <div class="md-whiteframe-z2">
+    <md-toolbar class="md-accent">
+      <h1 class="md-toolbar-tools">
+        Edit already created
+      </h1>
+    </md-toolbar>
 
-      <md-content layout-padding ng-repeat="subCategory in subCategories">
-        <h4>{{ subCategory.name }}</h4>
-        <md-button ng-click="subCategoryEditModal(subCategory)" class="md-raised md-primary">
-          Edit
-        </md-button>
-        <md-button ng-click="deleteSubCategory(subCategory)" class="md-raised md-primary">
-          Delete
-        </md-button>
-      </md-content>
+    <div layout="column" layout-gt-sm="row" layout-padding layout-wrap>
+
+      <div class="flex">
+        <div layout="column">
+          <div class="md-whiteframe-z1">
+            <md-toolbar class="md-primary">
+              <h1 class="md-toolbar-tools">
+                All Services
+              </h1>
+            </md-toolbar>
+
+            <md-content layout-padding ng-repeat="service in services track by $index">
+              <h4>{{ service.name }}</h4>
+              <md-button ng-click="serviceEditModal(service)" class="md-raised md-primary">
+                Edit
+              </md-button>
+              <md-button ng-click="deleteService(service)" class="md-raised md-primary">
+                Delete
+              </md-button>
+            </md-content>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex">
+        <div layout="column">
+          <div class="md-whiteframe-z1">
+            <md-toolbar class="md-primary">
+              <h1 class="md-toolbar-tools">
+                All Sub-Categories
+              </h1>
+            </md-toolbar>
+
+            <md-content layout-padding ng-repeat="subCategory in subCategories">
+              <h4>{{ subCategory.name }}</h4>
+              <md-button ng-click="subCategoryEditModal(subCategory)" class="md-raised md-primary">
+                Edit
+              </md-button>
+              <md-button ng-click="deleteSubCategory(subCategory)" class="md-raised md-primary">
+                Delete
+              </md-button>
+            </md-content>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex">
+        <div layout="column">
+          <div class="md-whiteframe-z1">
+            <md-toolbar class="md-primary">
+              <h1 class="md-toolbar-tools">
+                All Categories
+              </h1>
+            </md-toolbar>
+
+            <md-content layout-padding ng-repeat="category in categories">
+              <h4>{{ category.name }}</h4>
+              <md-button ng-click="categoryEditModal(category)" class="md-raised md-primary">
+                Edit
+              </md-button>
+              <md-button ng-click="deleteCategory(category)" class="md-raised md-primary">
+                Delete
+              </md-button>
+            </md-content>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-  <br>
-
-  <div layout="column" style="width:50%">
-    <div class="md-whiteframe-z1">
-      <md-toolbar class="md-primary">
-        <h1 class="md-toolbar-tools">
-          All Categories
-        </h1>
-      </md-toolbar>
-
-      <md-content layout-padding ng-repeat="category in categories">
-        <h4>{{ category.name }}</h4>
-        <md-button ng-click="categoryEditModal(category)" class="md-raised md-primary">
-          Edit
-        </md-button>
-        <md-button ng-click="deleteCategory(category)" class="md-raised md-primary">
-          Delete
-        </md-button>
-      </md-content>
-    </div>
-  </div>
-  <br>
+</div>
