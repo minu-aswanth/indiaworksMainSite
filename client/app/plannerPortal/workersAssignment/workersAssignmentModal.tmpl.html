@@ -9,6 +9,45 @@
               </h1>
             </md-toolbar>
 
+
+
+            <md-content>
+              <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Relevant Workers">
+                  <md-content class="md-padding" ng-repeat="item in allWorkers">
+                    <md-card style="width:70%" ng-init="temp = editTicket.workersAssigned.indexOf(item._id) != -1">
+                      <md-card-title>
+                        <md-card-title-text>
+                          <span class="md-headline">{{item.name}}</span>
+                          <span class="md-subhead">Small</span>
+                        </md-card-title-text>
+                      </md-card-title>
+                      <md-checkbox ng-model="temp" ng-change="addCurrentWorker(item._id)">
+                        Selected
+                      </md-checkbox>
+                    </md-card>        
+                  </md-content>
+                </md-tab>
+                <md-tab label="Selected Workers">
+                  <md-content class="md-padding" ng-repeat="item in allWorkers" ng-init="temp = editTicket.workersAssigned.indexOf(item._id) != -1">
+                    <md-card style="width:70%" ng-if="temp">
+                      <md-card-title>
+                        <md-card-title-text>
+                          <span class="md-headline">{{item.name}}</span>
+                          <span class="md-subhead">Small</span>
+                        </md-card-title-text>
+                      </md-card-title>
+                      <md-checkbox ng-model="temp" ng-change="addCurrentWorker(item._id)">
+                        Selected
+                      </md-checkbox>
+                    </md-card>        
+                  </md-content>
+                </md-tab>
+              </md-tabs>
+            </md-content>
+
+            
+
             <md-content layout-padding>
               <md-input-container>
                 <md-select multiple ng-model="editTicket.workersAssigned" placeholder="Select Workers">

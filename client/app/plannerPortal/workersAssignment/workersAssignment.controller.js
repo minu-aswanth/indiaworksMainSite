@@ -76,6 +76,20 @@ angular.module('indiaworksMainSiteApp')
     function workersAssignmentModalCtrl ($scope, $mdDialog, ticketPassed, allWorkers) {   
       $scope.editTicket = ticketPassed;
       $scope.allWorkers = allWorkers;
+
+      $scope.addCurrentWorker = function(itemId){
+        if($scope.editTicket.workersAssigned.indexOf(itemId) != -1){
+          //item is there in array, so remove it
+          var index = $scope.editTicket.workersAssigned.indexOf(itemId);
+          $scope.editTicket.workersAssigned.splice(index, 1);
+          console.log($scope.editTicket);
+        }
+        else{
+          //item is not there, so add it
+          $scope.editTicket.workersAssigned.push(itemId);
+          console.log($scope.editTicket);
+        }
+      }
       
       $scope.cancel = function() {
         $mdDialog.cancel();
