@@ -1,71 +1,83 @@
-  <md-dialog aria-label="Edit Category Details" style="width:80%;">
-    <form>
-      <md-dialog-content>
-        <div layout="column">
-          <div class="md-whiteframe-z1">
-            <md-toolbar class="md-primary">
-              <h1 class="md-toolbar-tools">
-                Assign Workers
-              </h1>
-            </md-toolbar>
+<md-dialog aria-label="Edit Category Details" class="width-60">
+  <form>
+    <md-dialog-content>
+      <div layout="column">
+        <div class="md-whiteframe-z1">
+          <md-toolbar class="md-primary">
+            <h1 class="md-toolbar-tools">
+              Assign Workers
+            </h1>
+          </md-toolbar>
 
-
-
-            <md-content>
-              <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="Relevant Workers">
-                  <md-content class="md-padding" ng-repeat="item in allWorkers">
-                    <md-card style="width:70%" ng-init="temp = editTicket.workersAssigned.indexOf(item._id) != -1">
+          <md-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+              <md-tab label="Relevant Workers">
+                <md-content class="md-padding" layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap>
+                  <div ng-repeat="item in allWorkers track by $index" flex="50">
+                    <md-card>
                       <md-card-title>
                         <md-card-title-text>
-                          <span class="md-headline">{{item.name}}</span>
-                          <span class="md-subhead">Small</span>
+                          <span class="md-headline">Name : {{ item.name }}</span>
+                          <span class="md-subhead">Rating : {{ item.rating }}</span>
                         </md-card-title-text>
+                        <md-card-title-media>
+                          <div class="md-media-lg">
+                            <img src="assets/images/yeoman.png">
+                          </div>
+                        </md-card-title-media>
                       </md-card-title>
-                      <md-checkbox ng-model="temp" ng-change="addCurrentWorker(item._id)">
-                        Selected
-                      </md-checkbox>
-                    </md-card>        
-                  </md-content>
-                </md-tab>
-                <md-tab label="Selected Workers">
-                  <md-content class="md-padding" ng-repeat="item in allWorkers" ng-init="temp = editTicket.workersAssigned.indexOf(item._id) != -1">
-                    <md-card style="width:70%" ng-if="temp">
+                      <md-card-actions layout="row" layout-align="end">
+                        <md-checkbox ng-model="item.selected" ng-change="incrementSelect(item.selected)">
+                          {{ item.selected == true ? 'Remove' : 'Select' }}
+                        </md-checkbox>
+                      </md-card-actions>
+                    </md-card>      
+                  </div>
+                  <div ng-if="!allWorkers.length">
+                    <h1 class="md-display-1">Couldn't find relevant workers</h1>
+                  </div>                     
+                </md-content>
+              </md-tab>
+              <md-tab label="Selected Workers">
+                <md-content class="md-padding" layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap>
+                  <div ng-repeat="item in allWorkers track by $index" ng-if="item.selected" flex="50">
+                    <md-card>
                       <md-card-title>
                         <md-card-title-text>
-                          <span class="md-headline">{{item.name}}</span>
-                          <span class="md-subhead">Small</span>
+                          <span class="md-headline">Name : {{ item.name }}</span>
+                          <span class="md-subhead">Rating : {{ item.rating }}</span>
                         </md-card-title-text>
+                        <md-card-title-media>
+                          <div class="md-media-lg">
+                            <img src="assets/images/yeoman.png">
+                          </div>
+                        </md-card-title-media>
                       </md-card-title>
-                      <md-checkbox ng-model="temp" ng-change="addCurrentWorker(item._id)">
-                        Selected
-                      </md-checkbox>
-                    </md-card>        
-                  </md-content>
-                </md-tab>
-              </md-tabs>
-            </md-content>
-
-            
-
-            <md-content layout-padding>
-              <md-input-container>
-                <md-select multiple ng-model="editTicket.workersAssigned" placeholder="Select Workers">
-                  <md-option ng-repeat="item in allWorkers track by $index" value="{{ item._id }}">{{ item.name }}</md-option>
-                </md-select>
-              </md-input-container>
-            </md-content>
-          </div>
+                      <md-card-actions layout="row" layout-align="end">
+                        <md-checkbox ng-model="item.selected">
+                          {{ item.selected == true ? 'Remove' : 'Select' }}
+                        </md-checkbox>
+                      </md-card-actions>
+                    </md-card>
+                  </div>
+                  <div ng-if="!numWorkersSelected">
+                    <h1 class="md-display-1">No worker selected</h1>
+                  </div> 
+                </md-content>
+              </md-tab>
+            </md-tabs>
+          </md-content>
         </div>
-      </md-dialog-content>
-      <div class="md-actions" layout="row">
-        <md-button ng-click="cancel()" class="md-raised">
-          Discard changes
-        </md-button>
-        <md-button ng-click="save()" class="md-raised md-primary">
-          Save
-        </md-button>
       </div>
-    </form>
-  </md-dialog>
+    </md-dialog-content>
 
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cancel()" class="md-raised">
+        Discard changes
+      </md-button>
+      <md-button ng-click="save()" class="md-raised md-primary">
+        Save
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

@@ -74,24 +74,26 @@ angular.module('indiaworksMainSiteApp')
     }; 
 
     function workersAssignmentModalCtrl ($scope, $mdDialog, ticketPassed, allWorkers) {   
+      $scope.numWorkersSelected = 0;
+
+      for(var i=0; i<allWorkers.length; i++) {
+        if(ticketPassed.workersAssigned.indexOf(allWorkers[i]._id) != -1) {
+          allWorkers[i].selected = true;
+          $scope.numWorkersSelected += 1;
+        } else {
+          allWorkers.selected = false;
+        }
+      }
+
       $scope.editTicket = ticketPassed;
       $scope.allWorkers = allWorkers;
 
-      $scope.addCurrentWorker = function(itemId){
-        if($scope.editTicket.workersAssigned.indexOf(itemId) != -1){
-          //item is there in array, so remove it
-          var index = $scope.editTicket.workersAssigned.indexOf(itemId);
-          $scope.editTicket.workersAssigned.splice(index, 1);
-          console.log($scope.editTicket);
-        }
-        else{
-          //item is not there, so add it
-          $scope.editTicket.workersAssigned.push(itemId);
-          console.log($scope.editTicket);
-        }
-      }
+      // updates the count of number of workers selected 
+      $scope.incrementSelect = function (increment) {
+        increment === true ? $scope.numWorkersSelected += 1 : $scope.numWorkersSelected -= 1;
+      };
       
-      $scope.cancel = function() {
+      $scope.cancel = function () {
         $mdDialog.cancel();
       };
 
