@@ -99,13 +99,8 @@ angular.module('indiaworksMainSiteApp')
 
       $scope.save = function () {
         console.log($scope.editTicket);
-        plannerPortal.editTicket({
-          _id: $scope.editTicket._id,
-          category: $scope.editTicket.category._id,
-          subCategory: $scope.editTicket.subCategory._id,
-          service: $scope.editTicket.service._id,
-          workersAssigned: $scope.editTicket.workersAssigned,
-          resolved: $scope.editTicket.resolved
+        plannerPortal.editTicket($scope.editTicket._id, {
+          workersAssigned: $scope.editTicket.workersAssigned
         })
         .then(function (response) {
           var config = {
@@ -130,44 +125,9 @@ angular.module('indiaworksMainSiteApp')
       }
     }
 
-  	$scope.assignWorkers = function (ticket, workersSelected) {
-      console.log(workersSelected);
-  		plannerPortal.editTicket({
-        _id: ticket._id,
-        category: ticket.category,
-        subCategory: ticket.subCategory,
-        service: ticket.service,
-        workersAssigned: workersSelected,
-        resolved: ticket.resolved
-      })
-      .then(function (response) {
-        var config = {
-          text: "Assigned successfully",
-          intervalTime: 3000,
-          position: "bottom left"
-        };
-        Toast.simpleToast(config);
-
-        console.log(response);
-      })
-      .catch(function (err) {
-        var config = {
-          text: "Some error! Please check internet (or) try again",
-          intervalTime: 3000,
-          position: "bottom left"
-        };
-        Toast.simpleToast(config);                
-      });	
-  	};
-
     $scope.resolvedCheck = function (ticket, ifResolved) {
       console.log(ifResolved);
-      plannerPortal.editTicket({
-        _id: ticket._id,
-        category: ticket.category,
-        subCategory: ticket.subCategory,
-        service: ticket.service,
-        workersAssigned: ticket.workersAssigned,
+      plannerPortal.editTicket(ticket._id, {
         resolved: ifResolved
       })
       .then(function (response) {

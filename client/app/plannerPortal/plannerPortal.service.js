@@ -76,8 +76,8 @@ angular.module('indiaworksMainSiteApp')
         });
       },
 
-      editTicket: function (data) {
-        return $http.put('/api/tickets/' + data._id, data).then(function (response) {
+      editTicket: function (id, data) {
+        return $http.put('/api/tickets/' + id, data).then(function (response) {
           return response;
         });
       }
