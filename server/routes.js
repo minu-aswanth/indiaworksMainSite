@@ -13,7 +13,6 @@ module.exports = function(app) {
   app.use('/api/services', require('./api/service'));
   app.use('/api/subCategories', require('./api/subCategory'));
   app.use('/api/categories', require('./api/category'));
-  app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth'));
