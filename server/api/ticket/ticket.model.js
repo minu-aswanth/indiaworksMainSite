@@ -1,7 +1,7 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var TicketSchema = new Schema({
   category: { type: Schema.Types.ObjectId, ref: 'Category' },
@@ -14,10 +14,15 @@ var TicketSchema = new Schema({
   /*not needed*/
   email: String,
   /*not needed*/
-  phone: String,
+  phoneNumber: String,
   /*not needed*/
   location: String,
   ticketLocation: String,
+  houseNumber: String,
+  address1: String,
+  address2: String,
+  landmarks: String,
+  additionalComments : String,
   workersAssigned: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   rating: { type: Number, default: 0 },
   createdOn: { type: Date, default: Date.now },
