@@ -17,6 +17,7 @@ var TicketSchema = new Schema({
   phoneNumber: String,
   /*not needed*/
   location: String,
+  area: String,
   ticketLocation: String,
   houseNumber: String,
   address1: String,

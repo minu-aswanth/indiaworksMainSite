@@ -25,8 +25,9 @@ exports.show = function(req, res) {
 
 // Creates a new ticket in the DB.
 exports.create = function(req, res) {
-  Ticket.create(req.body, function(err, ticket) {
+  Ticket.create(req.body, function (err, ticket) {
     if(err) { return handleError(res, err); }
+    console.log(req.body);
     return res.status(201).json(ticket);
   });
 };
