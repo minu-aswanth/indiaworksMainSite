@@ -9,9 +9,9 @@ exports.index = function(req, res) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(tickets);
   })
-  .populate('category')
-  .populate('subCategory')
-  .populate('service');
+  .populate('category', 'name description _id')
+  .populate('subCategory', 'name description _id')
+  .populate('service', 'name description _id');
 };
 
 // Get a single ticket
