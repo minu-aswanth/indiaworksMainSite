@@ -6,14 +6,13 @@ var SubCategory = require('./subCategory.model');
 // Get list of subCategorys
 exports.index = function(req, res) {
   // Check whether to populate services
-  var services = false;
-  if(req.query.services == true) {
-    console.log('asd');
-    var services = true;
+  var service = false;
+  if(req.query.service == true) {
+    var service = true;
   }
 
   // Populate services
-  if(services) {
+  if(service) {
     SubCategory.find(function (err, subCategorys) {
       if(err) { return handleError(res, err); }
       return res.status(200).json(subCategorys);
@@ -42,14 +41,13 @@ exports.sendServices = function(req, res) {
 // Get a single subCategory
 exports.show = function(req, res) {
   // Check whether to populate services
-  console.log(req.query.services);
-  var services = false;
-  if(req.query.services == true) {
-    var services = true;
+  var service = false;
+  if(req.query.service == true) {
+    var service = true;
   }
 
   // Populate services
-  if(services) {
+  if(service) {
     SubCategory.findById(req.params.id, function (err, subCategorys) {
       if(err) { return handleError(res, err); }
       return res.status(200).json(subCategorys);

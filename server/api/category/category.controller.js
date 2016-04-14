@@ -7,17 +7,17 @@ var Service = require('../service/service.model');
 // Get list of categorys
 exports.index = function(req, res) {
   // Check whether to populate subCategories and services
-  var sub_categories = false;
-  var services = false;
-  if(req.query.sub_categories == true) {
-    var sub_categories = true;
+  var sub_category = false;
+  var service = false;
+  if(req.query.sub_category == true) {
+    var sub_category = true;
   }
-  if(req.query.services == true) {
-    var services = true;
+  if(req.query.service == true) {
+    var service = true;
   }
 
   // Populate both subCategories and services 
-  if(sub_categories && services) {
+  if(sub_category && service) {
     Category.find({})
       .populate('subCategories', 'name description _id services')
       .exec(function (err, categorys) {
@@ -36,7 +36,7 @@ exports.index = function(req, res) {
       });
   }
   // Populate only subCategories
-  else if(sub_categories && !services) {
+  else if(sub_category && !service) {
     Category.find(function (err, categorys) {
       if(err) { return handleError(res, err); }
       if(!categorys) { return res.sendStatus(404); }
