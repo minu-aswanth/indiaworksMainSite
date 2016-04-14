@@ -11,6 +11,16 @@ exports.index = function(req, res) {
   });
 };
 
+// Get the services of a sub-category
+exports.sendServices = function(req, res) {
+  SubCategory.findById(req.params.id, function (err, subCategory) {
+    if(err) { return handleError(res, err); }
+    console.log(subCategory);
+    return res.status(200).json(subCategory);    
+  })
+  .populate('services', 'name description _id')
+};
+
 // Get a single subCategory
 exports.show = function(req, res) {
   SubCategory.findById(req.params.id, function (err, subCategory) {

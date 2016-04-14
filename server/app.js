@@ -26,7 +26,10 @@ if(config.seedDB) { require('./config/seed'); }
 var app = express();
 
 // Enable CORS
-app.use(cors());
+var corsOptions = {
+	'methods': ['GET', 'PUT', 'POST']
+}
+app.use(cors(corsOptions));
 
 var server = require('http').createServer(app);
 require('./config/express')(app);

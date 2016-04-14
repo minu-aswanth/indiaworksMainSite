@@ -24,6 +24,7 @@ var TicketSchema = new Schema({
   address2: String,
   landmarks: String,
   additionalComments : String,
+  
   workersAssigned: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   rating: { type: Number, default: 0 },
   createdOn: { type: Date, default: Date.now },

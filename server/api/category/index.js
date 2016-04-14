@@ -7,6 +7,8 @@ var auth = require('../../auth/auth.service');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/populateSubCatServices/:id', controller.sendSubCatServices);
+router.get('/populateSubCats/:id', controller.sendSubCats);
 router.get('/:id', controller.show);
 router.post('/', auth.hasRole('planner'), controller.create);
 router.put('/:id', auth.hasRole('planner'), controller.update);

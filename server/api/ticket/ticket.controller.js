@@ -20,11 +20,15 @@ exports.show = function(req, res) {
     if(err) { return handleError(res, err); }
     if(!ticket) { return res.sendStatus(404); }
     return res.json(ticket);
-  });
+  })
+  .populate('category', 'name description _id')
+  .populate('subCategory', 'name description _id')
+  .populate('service', 'name description _id');
 };
 
 // Creates a new ticket in the DB.
 exports.create = function(req, res) {
+  console.log(req.body);
   Ticket.create(req.body, function (err, ticket) {
     if(err) { return handleError(res, err); }
     console.log(req.body);
