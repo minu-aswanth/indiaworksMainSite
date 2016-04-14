@@ -11,7 +11,7 @@ module.exports = function(app) {
   // Insert routes below
   app.use('/api/tickets', require('./api/ticket'));
   app.use('/api/services', require('./api/service'));
-  app.use('/api/subCategories', require('./api/subCategory'));
+  app.use('/api/sub-categories', require('./api/subCategory'));
   app.use('/api/categories', require('./api/category'));
   app.use('/api/users', require('./api/user'));
 
