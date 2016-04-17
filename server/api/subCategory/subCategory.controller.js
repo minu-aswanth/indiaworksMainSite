@@ -7,7 +7,7 @@ var SubCategory = require('./subCategory.model');
 exports.index = function(req, res) {
   // Check whether to populate services
   var service = false;
-  if(req.query.service == true) {
+  if(req.query.service == 'true') {
     var service = true;
   }
 
@@ -32,7 +32,7 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   // Check whether to populate services
   var service = false;
-  if(req.query.service == true) {
+  if(req.query.service == 'true') {
     var service = true;
   }
 

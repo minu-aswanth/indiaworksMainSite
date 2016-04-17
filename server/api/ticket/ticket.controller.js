@@ -5,25 +5,58 @@ var Ticket = require('./ticket.model');
 
 // Get list of tickets
 exports.index = function(req, res) {
-  Ticket.find(function (err, tickets) {
+  var Query = Ticket.find({});
+  if(req.query.category == 'true') {
+    Query = Query.populate('category', 'name description _id');
+  }
+  if(req.query.sub_category == 'true') {
+    Query = Query.populate('subCategory', 'name description _id');
+  }
+  if(req.query.service == 'true') {
+    Query = Query.populate('service', 'name description _id');
+  }
+
+  Query.exec(function (err, tickets) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(tickets);
-  })
-  .populate('category', 'name description _id')
-  .populate('subCategory', 'name description _id')
-  .populate('service', 'name description _id');
+  });
+
+  // Ticket.find(function (err, tickets) {
+  //   if(err) { return handleError(res, err); }
+  //   return res.status(200).json(tickets);
+  // })
+  // .populate('category', 'name description _id')
+  // .populate('subCategory', 'name description _id')
+  // .populate('service', 'name description _id');
 };
 
 // Get a single ticket
 exports.show = function(req, res) {
-  Ticket.findById(req.params.id, function (err, ticket) {
+  var Query = Ticket.findById(req.params.id);
+  if(req.query.category == 'true') {
+    Query = Query.populate('category', 'name description _id');
+  }
+  if(req.query.sub_category == 'true') {
+    Query = Query.populate('subCategory', 'name description _id');
+  }
+  if(req.query.service == 'true') {
+    Query = Query.populate('service', 'name description _id');
+  }
+
+  Query.exec(function (err, tickets) {
     if(err) { return handleError(res, err); }
-    if(!ticket) { return res.sendStatus(404); }
-    return res.json(ticket);
-  })
-  .populate('category', 'name description _id')
-  .populate('subCategory', 'name description _id')
-  .populate('service', 'name description _id');
+    return res.status(200).json(tickets);
+  });
+
+
+  // Ticket.findById(req.params.id, function (err, ticket) {
+  //   if(err) { return handleError(res, err); }
+  //   if(!ticket) { return res.sendStatus(404); }
+  //   return res.json(ticket);
+  // })
+  // .populate('category', 'name description _id')
+  // .populate('subCategory', 'name description _id')
+  // .populate('service', 'name description _id');
 };
 
 // Creates a new ticket in the DB.
