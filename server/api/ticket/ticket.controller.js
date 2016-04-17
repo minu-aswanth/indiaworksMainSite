@@ -20,14 +20,6 @@ exports.index = function(req, res) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(tickets);
   });
-
-  // Ticket.find(function (err, tickets) {
-  //   if(err) { return handleError(res, err); }
-  //   return res.status(200).json(tickets);
-  // })
-  // .populate('category', 'name description _id')
-  // .populate('subCategory', 'name description _id')
-  // .populate('service', 'name description _id');
 };
 
 // Get a single ticket
@@ -47,16 +39,6 @@ exports.show = function(req, res) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(tickets);
   });
-
-
-  // Ticket.findById(req.params.id, function (err, ticket) {
-  //   if(err) { return handleError(res, err); }
-  //   if(!ticket) { return res.sendStatus(404); }
-  //   return res.json(ticket);
-  // })
-  // .populate('category', 'name description _id')
-  // .populate('subCategory', 'name description _id')
-  // .populate('service', 'name description _id');
 };
 
 // Creates a new ticket in the DB.
