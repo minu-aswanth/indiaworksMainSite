@@ -30,7 +30,7 @@ var TicketSchema = new Schema({
   createdOn: { type: Date, default: Date.now },
   updatedOn: { type: Date, default: Date.now },
   userScheduledTime: { type: Date, default: Date.now },
-  plannerScheduledTime: { type: Date, default: Date.now },
+  plannerScheduledTime: { type: Date },
   resolved: { type: Boolean, default: false }
 });
 
