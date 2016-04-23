@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var config = require('../config/environment');
@@ -16,7 +17,7 @@ var validateJwt = expressJwt({ secret: config.secrets.session });
 function isAuthenticated() {
   return compose()
     // Validate jwt
-    .use(function(req, res, next) {
+    .use(function (req, res, next) {
       // allow access_token to be passed through query parameter as well
       if(req.query && req.query.hasOwnProperty('access_token')) {
         req.headers.authorization = 'Bearer ' + req.query.access_token;
@@ -24,13 +25,43 @@ function isAuthenticated() {
       validateJwt(req, res, next);
     })
     // Attach user to request
-    .use(function(req, res, next) {
+    .use(function (req, res, next) {
       User.findById(req.user._id, function (err, user) {
         if (err) return next(err);
         if (!user) return res.send(401);
 
         req.user = user;
         next();
+      });
+    });
+}
+
+/**
+ * If there is a user, appends it to the req
+ * else req.user would be undefined
+ * @returns {Function} - express middleware
+ */
+function appendUser() {
+  return compose()
+    // Attach user to request
+    .use(function (req, res, next) {
+      validateJwt(req, res, function (val) {
+        if(_.isUndefined(val)) {
+          User.findById(req.user._id, function (err, user) {
+            if(err) {
+              return next(err);
+            } else if(!user) {
+              req.user = null;
+              return next();
+            } else {
+              req.user = user;
+              return next();
+            }
+          });
+        } else {
+          req.user = null;
+          return next();
+        }
       });
     });
 }
@@ -74,3 +105,4 @@ exports.isAuthenticated = isAuthenticated;
 exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;
+exports.appendUser = appendUser;
