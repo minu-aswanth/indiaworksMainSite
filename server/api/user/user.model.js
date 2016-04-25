@@ -22,7 +22,13 @@ var UserSchema = new Schema({
   pictureId: [{ type: String }],
   documentId: [{ type: String }],
   hashedPassword: String,
+  providerStack: [{ type: String }],
   provider: String,
+  providers: {type: Object, default: {
+    local: false,
+    facebook: false,
+    google: false,
+  }},  
   salt: String,
   OTP: String,
   resetPasswordToken: String,

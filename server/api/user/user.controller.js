@@ -26,6 +26,10 @@ exports.index = function(req, res) {
 exports.createUser = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
+  newUser.providerStack.push('local');
+  newUser.providers.local = true;
+  newUser.providers.facebook = false;
+  newUser.providers.google = false;
   newUser.role = 'user';
   newUser.category = null;
   newUser.subCategory = null;
@@ -33,7 +37,7 @@ exports.createUser = function (req, res, next) {
   newUser.rating = null;
   newUser.pictureId = null;
   newUser.documentId = null;
-  newUser.save(function(err, user) {
+  newUser.save(function (err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
@@ -46,8 +50,12 @@ exports.createUser = function (req, res, next) {
 exports.createWorker = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
+  newUser.providerStack.push('local');
+  newUser.providers.local = true;
+  newUser.providers.facebook = false;
+  newUser.providers.google = false;
   newUser.role = 'worker';
-  newUser.save(function(err, user) {
+  newUser.save(function (err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
@@ -55,7 +63,6 @@ exports.createWorker = function (req, res, next) {
 };
 
 exports.getWorkers = function(req, res, next){
-  console.log("came here");
   User.find({'role': 'worker'}, '-salt -password', function (err, workers) {
     if (err) return next(err);
     if (!workers) return res.sendStatus(401);
@@ -68,7 +75,6 @@ exports.getWorkers = function(req, res, next){
  */
 exports.show = function (req, res, next) {
   var userId = req.params.id;
-  console.log("How did it come here");
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.sendStatus(401);
@@ -81,7 +87,7 @@ exports.show = function (req, res, next) {
  * restriction: 'admin'
  */
 exports.destroy = function(req, res) {
-  User.findByIdAndRemove(req.params.id, function(err, user) {
+  User.findByIdAndRemove(req.params.id, function (err, user) {
     if(err) return res.status(500).json(err);
     return res.sendStatus(204);
   });
@@ -98,7 +104,7 @@ exports.changePassword = function(req, res, next) {
   User.findById(userId, function (err, user) {
     if(user.authenticate(oldPass)) {
       user.password = newPass;
-      user.save(function(err) {
+      user.save(function (err) {
         if (err) return validationError(res, err);
         res.sendStatus(200);
       });
@@ -115,7 +121,7 @@ exports.me = function(req, res, next) {
   var userId = req.user._id;
   User.findOne({
     _id: userId
-  }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
+  }, '-salt -hashedPassword', function (err, user) { // don't ever give out the password or salt
     if (err) return next(err);
     if (!user) return res.sendStatus(401);
     res.json(user);

@@ -67,6 +67,22 @@ function appendUser() {
 }
 
 /**
+ * Takes the token cookie and adds the header
+ * for it on the request
+ * @returns {Function} - express middleware
+ */
+function addAuthHeaderFromCookie() {
+  return compose()
+    .use(function(req, res, next) {
+      if(req.cookies.token) {
+        req.headers.authorization = `Bearer ${_.trim(req.cookies.token, '"')}`;
+      }
+      return next();
+    });
+}
+
+
+/**
  * Checks if the user role meets the minimum requirements of the route
  */
 function hasRole(roleRequired) {
@@ -106,3 +122,4 @@ exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;
 exports.appendUser = appendUser;
+exports.addAuthHeaderFromCookie = addAuthHeaderFromCookie;

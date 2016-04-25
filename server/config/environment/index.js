@@ -60,6 +60,8 @@ var all = {
   }
 };
 
+console.log(process.env.DOMAIN);
+
 // Export the config object based on the NODE_ENV
 // ==============================================
 module.exports = _.merge(
